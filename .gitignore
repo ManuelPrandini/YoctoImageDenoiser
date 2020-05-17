@@ -1,0 +1,3 @@
+#ignore test and out folders
+tests/
+out/

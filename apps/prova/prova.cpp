@@ -12,7 +12,9 @@
 namespace ext = yocto::extension;
 namespace cmn = yocto::common;
 namespace cli = yocto::commonio;
+namespace img = yocto::image;
 
+using namespace yocto::math;
 using namespace std::string_literals;
 using namespace oidn;
 
@@ -21,20 +23,21 @@ const auto filter_types = std::vector<std::string>{"RT", "RTLightmap"};
 int main(int argc, char* argv[])
 {
   //declaring of various parameters
-  std::string filterType = filter_types.at(0);
-  std::string colorFilename, albedoFilename, normalFilename;
-  std::string outputFilename, refFilename;
-  std::string weightsFilename;
-  
+  auto filter_type = filter_types.at(0);
+  auto color_filename = ""s;
+  auto albedo_filename = ""s;
+  auto normal_filename = ""s;
+  auto output_filename = "out.hdr"s;
+  auto ref_filename = ""s;
+  auto weights_filename = ""s;
 
-  bool hdr = false;
-  bool srgb = false;
-  int numBenchmarkRuns = 0;
-  int numThreads = -1;
-  int setAffinity = -1;
-  int maxMemoryMB = -1;
-  int verbose = -1;
-  outputFilename = "out.hdr"s;
+  auto hdr = false;
+  auto srgb = false;
+  auto num_benchmark_runs = 0;
+  auto num_threads = -1;
+  auto set_affinity = -1;
+  auto max_memory_mb = -1;
+  auto verbose = -1;
 
   /*
   std::cout << "Intel(R) Open Image Denoise - Example" << std::endl;
@@ -47,33 +50,262 @@ int main(int argc, char* argv[])
             << "               [--bench ntimes] [-v/--verbose 0-3]" << std::endl;
   
   */
+try
+{
+ 
   // parse command line
   auto cli = cli::make_cli("yimgdenoise", " Intel(R) Open Image denoiser");
-  add_option(cli, "--filter,-f", filterType, "Filter type.");
-  
+  add_option(cli, "--filter,-f", filter_type, "Filter type RT|RTLightmap .");
   add_option(cli, "--hdr", hdr, "Hdr image.");
   add_option(cli, "--srgb", srgb, "Srgb image.");
-  add_option(cli, "--alb,", albedoFilename, "Albedo image.");
-  add_option(cli, "--nrm", normalFilename, "Normal image.");
-  
-  add_option(cli, "--ref,-r", refFilename, "Reference output image.");
-  add_option(cli, "--weights,-w", weightsFilename, "Weights file.");
-  add_option(cli, "--threads,-t", numThreads, "Threads.");
+  add_option(cli, "--alb,", albedo_filename, "Albedo image.");
+  add_option(cli, "--nrm", normal_filename, "Normal image.");
+  add_option(cli, "--ref,-r", ref_filename, "Reference output image.");
+  add_option(cli, "--weights,-w", weights_filename, "Weights file.");
+  add_option(cli, "--threads,-t", num_threads, "Threads.");
   //da vedere affinity per i valori da scegliere
-  add_option(cli,"--affinity",setAffinity,"Affinity.");
-  add_option(cli,"--maxmem",maxMemoryMB,"Max memory in MB.");
-  add_option(cli,"--bench",numBenchmarkRuns,"Number of benchmark runs.");
+  add_option(cli,"--affinity",set_affinity,"Affinity.");
+  add_option(cli,"--maxmem",max_memory_mb,"Max memory in MB.");
+  add_option(cli,"--bench",num_benchmark_runs,"Number of benchmark runs.");
   add_option(cli,"--verbose,-v",verbose,"Verbose.");
-  add_option(cli, "--output,-o", outputFilename, "Output image.");
-  
-
+  add_option(cli, "--output,-o", output_filename, "Output image.");
   //arguments
-  add_option(cli,"image",colorFilename,"Input image.",true);
-  
-
+  add_option(cli,"image",color_filename,"Input image.",true);
   parse_cli(cli, argc, argv);
 
 
+  //checks on arguments
+  if (!ref_filename.empty() && num_benchmark_runs > 0)
+    cli::print_fatal("Error: reference and benchmark modes cannot be enabled at the same time!");
 
-  return 0;
+  if(filter_type.compare("RT") != 0 && filter_type.compare("RTLightmap") != 0)
+    cli::print_fatal("Error: invalid filter type!");
+
+  if(!color_filename.empty() && !normal_filename.empty() && albedo_filename.empty())
+    cli::print_fatal("Error: unsupported combination of input features!");
+  
+  // Set MXCSR flags
+  if (!ref_filename.empty())
+  {
+    // In reference mode we have to disable the FTZ and DAZ flags to get accurate results
+    _MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_OFF);
+    _MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_OFF);
+  }
+  else
+  {
+    // Enable the FTZ and DAZ flags to maximize performance
+    _MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
+    _MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
+  }
+
+  // Load the input image
+  //ImageBuffer color, albedo, normal;
+  //ImageBuffer ref;
+  
+  auto color_image = img::image<vec3f>{};
+  auto albedo_image = img::image<vec3f>{};
+  auto normal_image = img::image<vec3f>{};
+  auto ioerror = ""s;
+
+  std::cout << "Load input image ...\n" << std::endl;
+  //color = loadImage(color_filename, 3, srgb);
+  if(!img::load_image(color_filename,color_image,ioerror))
+    cli::print_fatal("Error : "+ioerror);
+
+  if (!albedo_filename.empty())
+  {
+    cli::print_info("Load albedo image ...\n");
+    if(!img::load_image(albedo_filename,albedo_image, ioerror))
+      cli::print_fatal(ioerror);
+    if(albedo_image.size() != color_image.size())
+      cli::print_fatal("Error: invalid albedo image");
+  }
+
+  if (!normal_filename.empty())
+  {
+    cli::print_info("Load normal image ...\n");
+    if(!img::load_image(normal_filename,normal_image, ioerror))
+      cli::print_fatal(ioerror);
+    if(normal_image.size() != color_image.size())
+      cli::print_fatal("Error: invalid normal image");
+  }
+
+  /*
+  if (!ref_filename.empty())
+  {
+    ref = loadImage(ref_filename, 3, srgb);
+    if (ref.getDims() != color.getDims())
+      throw std::runtime_error("invalid reference output image");
+  }
+  */
+
+  auto width = color_image.size().x;
+  auto height = color_image.size().y;
+  std::cout << "Resolution: " << width << "x" << height << std::endl;
+
+  // Initialize the output image
+  auto output_image = img::image<vec3f>(color_image.size(),zero3f);
+  //ImageBuffer output(width, height, 3);
+
+  // Load the filter weights if specified
+  auto weights = ""s;
+  if (!weights_filename.empty())
+  {
+    std::cout << "Loading filter weights" << std::endl;
+    //cli::load_text(weights_filename);
+    if(!cli::load_text(weights_filename,weights,ioerror))
+      cli::print_fatal(ioerror);
+  }
+
+//FINO A QUI CONTROLLATO!!!
+
+// Initialize the denoising filter
+  std::cout << "Initializing" << std::endl;
+
+  //create device
+  oidn::DeviceRef device = oidn::newDevice();
+
+  const char* errorMessage;
+  if (device.getError(errorMessage) != oidn::Error::None)
+    cli::print_fatal(errorMessage);
+  
+
+  //set parameters of device
+  if (num_threads > 0)
+    device.set("num_threads", num_threads);
+  if (set_affinity >= 0)
+    device.set("set_affinity", bool(set_affinity));
+  if (verbose >= 0)
+    device.set("verbose", verbose);
+  device.commit();
+
+  //create filter for device
+  //forse è possibile utilizzare image di yocto
+  //con load image annessa
+  oidn::FilterRef filter = device.newFilter(filter_type.c_str());
+
+  filter.setImage("color", color_image.data(), oidn::Format::Float3, width, height);
+  if (!albedo_filename.empty())
+  {
+    cli::print_info("set filter for albedo\n");
+    filter.setImage("albedo", albedo_image.data(), oidn::Format::Float3, width, height);
+  }
+  if (!normal_filename.empty())
+  {
+    cli::print_info("set filter for normal\n");
+    filter.setImage("normal", normal_image.data(), oidn::Format::Float3, width, height);
+  }
+
+  filter.setImage("output", output_image.data(), oidn::Format::Float3, width, height);
+
+  if (hdr)
+    filter.set("hdr", true);
+  if (srgb)
+    filter.set("srgb", true);
+
+  if (max_memory_mb >= 0)
+    filter.set("max_memory_mb", max_memory_mb);
+
+  if (!weights.empty())
+    filter.setData("weights", &weights, weights.size());
+
+  const bool showProgress =  num_benchmark_runs == 0 && verbose <= 2;
+  if (showProgress)
+  {
+    //filter.setProgressMonitorFunction(progressCallback);
+    //signal(SIGINT, signalHandler);
+  }
+
+  filter.commit();
+
+  auto timer = cli::print_timed("start denoising \n");
+
+  const int versionMajor = device.get<int>("versionMajor");
+  const int versionMinor = device.get<int>("versionMinor");
+  const int versionPatch = device.get<int>("versionPatch");
+
+  std::cout << "  version=" << versionMajor << "." << versionMinor << "." << versionPatch
+            << ", filter=" << filter_type << std::endl;
+
+  // Denoise the image
+  if (!showProgress)
+    std::cout << "Denoising" << std::endl;
+
+  filter.execute();
+
+  //const double denoiseTime = timer.query();
+  if (showProgress)
+    std::cout << std::endl;
+  if (verbose <= 2)
+    //std::cout << "  msec=" << (1000. * denoiseTime) << std::endl;
+    cli::print_elapsed(timer);
+
+  if (showProgress)
+  {
+    filter.setProgressMonitorFunction(nullptr);
+    signal(SIGINT, SIG_DFL);
+  }
+
+  if (!output_filename.empty())
+  {
+    // Save output image
+    std::cout << "Saving output" << std::endl;
+    if(img::save_image(output_filename, output_image,ioerror))
+      cli::print_fatal(ioerror);
+  }
+
+  /*
+  if (ref)
+  {
+    // Verify the output values
+    std::cout << "Verifying output" << std::endl;
+
+    int numErrors;
+    float maxError;
+    std::tie(numErrors, maxError) = compareImage(output, ref, 1e-4);
+
+    std::cout << "  values=" << output.getSize() << ", errors=" << numErrors << ", maxerror=" << maxError << std::endl;
+
+    if (numErrors > 0)
+    {
+      // Save debug images
+      std::cout << "Saving debug images" << std::endl;
+      saveImage("denoise_in.ppm",   color,  srgb);
+      saveImage("denoise_out.ppm",  output, srgb);
+      saveImage("denoise_ref.ppm",  ref,    srgb);
+
+      throw std::runtime_error("output does not match the reference");
+    }
+  }
+  */
+
+  if (num_benchmark_runs > 0)
+  {
+    // Benchmark loop
+  #ifdef VTUNE
+    __itt_resume();
+  #endif
+
+    std::cout << "Benchmarking: " << "ntimes=" << num_benchmark_runs << std::endl;
+    //timer.reset();
+
+    for (int i = 0; i < num_benchmark_runs; ++i)
+      filter.execute();
+
+    //const double totalTime = timer.query();
+    auto totalTime = cmn::get_time();
+    std::cout << "  sec=" << totalTime << ", msec/image=" << (1000.*totalTime / num_benchmark_runs) << std::endl;
+
+  #ifdef VTUNE
+    __itt_pause();
+  #endif
+  }
+}
+catch (std::exception& e)
+{
+  std::cerr << "Error: " << e.what() << std::endl;
+  return 1;
+}
+
+return 0;
 }
