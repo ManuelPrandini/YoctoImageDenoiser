@@ -1435,14 +1435,23 @@ static vec4f trace_normal(const ptr::scene* scene, const ray3f& ray,
 
 // Color for Albedo immages rendering
 static vec4f trace_color(const ptr::scene* scene,
-    const ray3f& ray, rng_state& rng, const trace_params& params) {
-  // intersect next point
-  auto intersection = intersect_scene_bvh(scene, ray);
-  if (!intersection.hit) {
-    return {zero3f, false};
-  }
+    const ray3f& ray_, rng_state& rng, const trace_params& params) {
+  // initialize
+  auto radiance = zero3f;
+  auto weight   = vec3f{1, 1, 1};
+  auto ray      = ray_;
+  auto hit      = false;
 
-  // prepare shading point
+  // trace  path
+  for (auto bounce = 0; bounce < max(params.bounces, 4); bounce++) {
+    // intersect next point
+    auto intersection = intersect_scene_bvh(scene, ray);
+    if (!intersection.hit) {
+      radiance += weight * eval_environment(scene, ray);
+      break;
+    }
+
+    // prepare shading point
     auto outgoing = -ray.d;
     auto object   = scene->objects[intersection.object];
     auto element  = intersection.element;
@@ -1451,16 +1460,37 @@ static vec4f trace_color(const ptr::scene* scene,
     auto normal   = eval_shading_normal(object, element, uv, outgoing);
     auto emission = eval_emission(object, element, uv, normal, outgoing);
     auto brdf     = eval_brdf(object, element, uv, normal, outgoing);
-    auto material = object->material;
 
-  // hash color
-  auto hashed_color = [](int id) {
-    auto hashed = std::hash<int>()(id);
-    auto rng    = make_rng(default_seed, hashed);
-    return pow(0.5f + 0.5f * rand3f(rng), 2.2f);
-  };
+    /*
+    // handle opacity
+    if (brdf.opacity < 1 && rand1f(rng) >= brdf.opacity) {
+      ray = {position + ray.d * 1e-2f, ray.d};
+      bounce -= 1;
+      continue;
+    }
+    */
+    hit = true;
 
-  return {brdf.diffuse,1};
+    // accumulate emission
+    radiance += eval_emission(emission, normal, outgoing);
+
+    // brdf * light
+    auto incoming = outgoing;
+    radiance += weight * pif * eval_brdfcos(brdf, normal, outgoing, incoming);
+
+    // continue path
+    if (!is_delta(brdf)) return {brdf.diffuse,1};
+    incoming = sample_delta(brdf, normal, outgoing, rand1f(rng));
+    weight *= eval_delta(brdf, normal, outgoing, incoming) /
+              sample_delta_pdf(brdf, normal, outgoing, incoming);
+    if (weight == zero3f || !isfinite(weight)) break;
+
+    // setup next iteration
+    ray = {position, incoming};
+  }
+
+  return {radiance, hit ? 1.0f : 0.0f};
+
 }
 
 // Trace a single ray from the camera using the given algorithm.

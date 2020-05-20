@@ -19,7 +19,7 @@ printf "normal \n"
 
 printf "naive \n"
 ./bin/yscenetrace tests/scenes/01_cornellbox/cornellbox.json -o tests/images/lowres/01_cornellbox/01_cornellbox_naive_1024_64.jpg -s 64 -r 1024 -t naive
-'
+
 printf "HDR \n\n"
 
 printf "pathrace \n"
@@ -36,25 +36,27 @@ printf "CORNELLBOX finished!\n"
 #BATHROOM
 '
 printf "generate BATHROOM \n"
+#./bin/yscenetrace tests/scenes/11_bathroom1/bathroom1.json -o tests/images/highres/11_bathroom1/prova_albedo_bathroom1_1280_64.jpg -s 64 -r 1280 -t color
+./bin/yscenetrace tests/scenes/11_bathroom1/bathroom1.json -o tests/images/highres/11_bathroom1/prova_eyelight_bathroom1_1280_64.jpg -s 64 -r 1280 -t eyelight
+'
+printf "HDR \n"
 printf "pathrace \n"
-
-
-./bin/yscenetrace tests/scenes/11_bathroom1/bathroom1.json -o tests/images/lowres/11_bathroom1/bathroom1_1024_64.jpg -s 64 -r 1024
+./bin/yscenetrace tests/scenes/11_bathroom1/bathroom1.json -o tests/images/highres/11_bathroom1/bathroom1_1280_64.hdr -s 64 -r 1280
 
 printf "albedo \n"
-./bin/yscenetrace tests/scenes/11_bathroom1/bathroom1.json -o tests/images/lowres/11_bathroom1/bathroom1_albedo_1024_64.jpg -s 64 -r 1024 -t color
+./bin/yscenetrace tests/scenes/11_bathroom1/bathroom1.json -o tests/images/highres/11_bathroom1/bathroom1_albedo_1280_64.hdr -s 64 -r 1280 -t color
 
 printf "normal \n"
-./bin/yscenetrace tests/scenes/11_bathroom1/bathroom1.json -o tests/images/lowres/11_bathroom1/bathroom1_normal_1024_64.jpg -s 64 -r 1024 -t normal
+./bin/yscenetrace tests/scenes/11_bathroom1/bathroom1.json -o tests/images/highres/11_bathroom1/bathroom1_normal_1280_64.hdr -s 64 -r 1280 -t normal
 
 printf "eyelight \n"
-./bin/yscenetrace tests/scenes/11_bathroom1/bathroom1.json -o tests/images/lowres/11_bathroom1/bathroom1_eyelight_1024_64.jpg -s 64 -r 1024 -t eyelight
+./bin/yscenetrace tests/scenes/11_bathroom1/bathroom1.json -o tests/images/higres/11_bathroom1/bathroom1_eyelight_1280_64.hdr -s 64 -r 1280 -t eyelight
 
-printf "naive \n"
-./bin/yscenetrace tests/scenes/11_bathroom1/bathroom1.json -o tests/images/lowres/11_bathroom1/bathroom1_naive_1024_64.jpg -s 64 -r 1024 -t naive
-
-printf "BATHROOM finished!\n"
+#printf "naive \n"
+#./bin/yscenetrace tests/scenes/11_bathroom1/bathroom1.json -o tests/images/higres/11_bathroom1/bathroom1_naive_1280_64.jpg -s 64 -r 1280 -t naive
 '
+printf "BATHROOM finished!\n"
+
 #AREALIGHT
 '
 printf "generate AREALIGHT \n"
