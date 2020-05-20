@@ -36,6 +36,7 @@
 // -----------------------------------------------------------------------------
 #include <yocto/yocto_image.h>
 #include <yocto/yocto_math.h>
+#include <yocto/yocto_commonio.h>
 
 #include <OpenImageIO/imageio.h>
 #include <OpenImageDenoise/oidn.hpp>
@@ -55,6 +56,7 @@ namespace yocto::extension {
 // Namespace aliases
 namespace ext = yocto::extension;
 namespace img = yocto::image;
+namespace cli = yocto::commonio;
 
 // Math defitions
 using math::bbox3f;
@@ -80,9 +82,31 @@ using math::zero3f;
 // -----------------------------------------------------------------------------
 namespace yocto::extension {
 
-    void create_device();
+    //create OpenImageDenoise device and return it.
+    oidn::DeviceRef create_device(int num_threads = -1, int set_affinity = -1, int verbose = -1);
 
-    //oidn::ImageBuffer load_imageBuffer(std::string& filename, int channels = 0); 
+    //set filter to device with also albedo image and normal image as input. Return the filter created.
+    oidn::FilterRef set_filter_to_device(oidn::DeviceRef& device, int width, int height,
+    img::image<vec3f>& color_image, img::image<vec3f>& output_image,  
+    img::image<vec3f>& albedo_image,
+    img::image<vec3f>& normal_image, 
+    bool hdr = false, bool srgb = false, int max_memory_mb = -1, std::string filter_type = "RT");
+
+    //set filter to device. Return the filter created.
+    oidn::FilterRef set_filter_to_device(oidn::DeviceRef& device, int width, int height,
+    img::image<vec3f>& color_image, img::image<vec3f>& output_image,  
+    bool hdr = false, bool srgb = false, int max_memory_mb = -1, std::string filter_type = "RT");
+
+    //set filter to device with also albedo image as input. Return the filter created.
+    oidn::FilterRef set_filter_to_device(oidn::DeviceRef& device, int width, int height,
+    img::image<vec3f>& color_image, img::image<vec3f>& output_image,  
+    img::image<vec3f>& albedo_image,
+    bool hdr = false, bool srgb = false, int max_memory_mb = -1, std::string filter_type = "RT");
+
+
+    //execute filter
+    void denoise( oidn::FilterRef& filter);
+    
 }  // namespace yocto::pathtrace
 
 #endif

@@ -1433,6 +1433,36 @@ static vec4f trace_normal(const ptr::scene* scene, const ray3f& ray,
   return {normal * 0.5f + 0.5f, 1};
 }
 
+// Color for Albedo immages rendering
+static vec4f trace_color(const ptr::scene* scene,
+    const ray3f& ray, rng_state& rng, const trace_params& params) {
+  // intersect next point
+  auto intersection = intersect_scene_bvh(scene, ray);
+  if (!intersection.hit) {
+    return {zero3f, false};
+  }
+
+  // prepare shading point
+    auto outgoing = -ray.d;
+    auto object   = scene->objects[intersection.object];
+    auto element  = intersection.element;
+    auto uv       = intersection.uv;
+    auto position = eval_position(object, element, uv);
+    auto normal   = eval_shading_normal(object, element, uv, outgoing);
+    auto emission = eval_emission(object, element, uv, normal, outgoing);
+    auto brdf     = eval_brdf(object, element, uv, normal, outgoing);
+    auto material = object->material;
+
+  // hash color
+  auto hashed_color = [](int id) {
+    auto hashed = std::hash<int>()(id);
+    auto rng    = make_rng(default_seed, hashed);
+    return pow(0.5f + 0.5f * rand3f(rng), 2.2f);
+  };
+
+  return {brdf.diffuse,1};
+}
+
 // Trace a single ray from the camera using the given algorithm.
 using shader_func = vec4f (*)(const ptr::scene* scene, const ray3f& ray,
     rng_state& rng, const trace_params& params);
@@ -1442,6 +1472,7 @@ static shader_func get_trace_shader_func(const trace_params& params) {
     case shader_type::path: return trace_path;
     case shader_type::eyelight: return trace_eyelight;
     case shader_type::normal: return trace_normal;
+    case shader_type::color: return trace_color;
     default: {
       throw std::runtime_error("sampler unknown");
       return nullptr;

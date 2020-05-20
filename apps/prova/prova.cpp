@@ -63,11 +63,10 @@ try
   add_option(cli, "--ref,-r", ref_filename, "Reference output image.");
   add_option(cli, "--weights,-w", weights_filename, "Weights file.");
   add_option(cli, "--threads,-t", num_threads, "Threads.");
-  //da vedere affinity per i valori da scegliere
-  add_option(cli,"--affinity",set_affinity,"Affinity.");
+  add_option(cli,"--affinity",set_affinity,"Affinity [0|1].");
   add_option(cli,"--maxmem",max_memory_mb,"Max memory in MB.");
   add_option(cli,"--bench",num_benchmark_runs,"Number of benchmark runs.");
-  add_option(cli,"--verbose,-v",verbose,"Verbose.");
+  add_option(cli,"--verbose,-v",verbose,"Verbose [0-3].");
   add_option(cli, "--output,-o", output_filename, "Output image.");
   //arguments
   add_option(cli,"image",color_filename,"Input image.",true);
@@ -83,6 +82,13 @@ try
 
   if(!color_filename.empty() && !normal_filename.empty() && albedo_filename.empty())
     cli::print_fatal("Error: unsupported combination of input features!");
+
+  if(srgb && hdr)
+    cli::print_fatal("Error: srgb and hdr modes cannot be enabled at the same time!");
+
+  if(filter_type == "RTLightmap" && (!albedo_filename.empty() || !normal_filename.empty()))
+    cli::print_fatal("Error: unsupported combination of input features!");
+  
   
   // Set MXCSR flags
   if (!ref_filename.empty())
@@ -98,29 +104,39 @@ try
     _MM_SET_DENORMALS_ZERO_MODE(_MM_DENORMALS_ZERO_ON);
   }
 
-  // Load the input image
-  //ImageBuffer color, albedo, normal;
-  //ImageBuffer ref;
-  
+  // Define images 
   auto color_image = img::image<vec3f>{};
   auto albedo_image = img::image<vec3f>{};
   auto normal_image = img::image<vec3f>{};
+  auto reference_image = img::image<vec3f>{};
   auto ioerror = ""s;
 
-  std::cout << "Load input image ...\n" << std::endl;
-  //color = loadImage(color_filename, 3, srgb);
+  //Color input image
+  cli::print_info("Load input image ...");
   if(!img::load_image(color_filename,color_image,ioerror))
     cli::print_fatal("Error : "+ioerror);
+  if(srgb)
+  {
+    color_image = img::rgb_to_srgb(color_image);
+    cli::print_info("Input image converted to srgb.");
+  }
 
+  //Color albedo image
   if (!albedo_filename.empty())
   {
-    cli::print_info("Load albedo image ...\n");
+    cli::print_info("Load albedo image ...");
     if(!img::load_image(albedo_filename,albedo_image, ioerror))
       cli::print_fatal(ioerror);
     if(albedo_image.size() != color_image.size())
       cli::print_fatal("Error: invalid albedo image");
+    if(srgb)
+    {
+      albedo_image = img::rgb_to_srgb(albedo_image);
+      cli::print_info("Albedo image converted to srgb.");
+    }
   }
 
+  //Color normal image
   if (!normal_filename.empty())
   {
     cli::print_info("Load normal image ...\n");
@@ -128,130 +144,90 @@ try
       cli::print_fatal(ioerror);
     if(normal_image.size() != color_image.size())
       cli::print_fatal("Error: invalid normal image");
+    if(srgb)
+    {
+      normal_image = img::rgb_to_srgb(normal_image);
+      cli::print_info("Normal image converted to srgb.");
+    }
+
   }
 
-  /*
+  //load the reference file image
   if (!ref_filename.empty())
   {
-    ref = loadImage(ref_filename, 3, srgb);
-    if (ref.getDims() != color.getDims())
-      throw std::runtime_error("invalid reference output image");
+    cli::print_info("Load reference image ...\n");
+    if(!img::load_image(ref_filename,reference_image, ioerror))
+      cli::print_fatal(ioerror);
+    if(reference_image.size() != color_image.size())
+      cli::print_fatal("Error: invalid reference image");
+    if(srgb)
+    {
+      reference_image = img::rgb_to_srgb(reference_image);
+      cli::print_info("Reference image converted to srgb.");
+    }
   }
-  */
-
+  
+  //get information by input image
+  cli::print_info("Image info:");
   auto width = color_image.size().x;
   auto height = color_image.size().y;
   std::cout << "Resolution: " << width << "x" << height << std::endl;
 
   // Initialize the output image
   auto output_image = img::image<vec3f>(color_image.size(),zero3f);
-  //ImageBuffer output(width, height, 3);
 
   // Load the filter weights if specified
   auto weights = ""s;
   if (!weights_filename.empty())
   {
-    std::cout << "Loading filter weights" << std::endl;
-    //cli::load_text(weights_filename);
+    cli::print_info("Loading filter weights \n");
     if(!cli::load_text(weights_filename,weights,ioerror))
       cli::print_fatal(ioerror);
   }
 
-//FINO A QUI CONTROLLATO!!!
-
-// Initialize the denoising filter
-  std::cout << "Initializing" << std::endl;
-
-  //create device
-  oidn::DeviceRef device = oidn::newDevice();
-
-  const char* errorMessage;
-  if (device.getError(errorMessage) != oidn::Error::None)
-    cli::print_fatal(errorMessage);
+  // Initialize the denoising filter
+  auto device = ext::create_device(num_threads,set_affinity,verbose);
+ 
+  //define filter for device
+  auto filter = oidn::FilterRef();
+  if(albedo_image.empty() && normal_image.empty())
+    filter = ext::set_filter_to_device(device,width,height,color_image,output_image,hdr,srgb,max_memory_mb,filter_type);
+  else if(!albedo_image.empty() && !normal_image.empty())
+    filter = ext::set_filter_to_device(device,width,height,color_image,output_image,albedo_image,normal_image,
+                                      hdr,srgb,max_memory_mb,filter_type);
+  else
+  {
+    filter = ext::set_filter_to_device(device,width,height,color_image,output_image,albedo_image,
+                                      hdr,srgb,max_memory_mb,filter_type);
+  }
   
-
-  //set parameters of device
-  if (num_threads > 0)
-    device.set("num_threads", num_threads);
-  if (set_affinity >= 0)
-    device.set("set_affinity", bool(set_affinity));
-  if (verbose >= 0)
-    device.set("verbose", verbose);
-  device.commit();
-
-  //create filter for device
-  //forse è possibile utilizzare image di yocto
-  //con load image annessa
-  oidn::FilterRef filter = device.newFilter(filter_type.c_str());
-
-  filter.setImage("color", color_image.data(), oidn::Format::Float3, width, height);
-  if (!albedo_filename.empty())
-  {
-    cli::print_info("set filter for albedo\n");
-    filter.setImage("albedo", albedo_image.data(), oidn::Format::Float3, width, height);
-  }
-  if (!normal_filename.empty())
-  {
-    cli::print_info("set filter for normal\n");
-    filter.setImage("normal", normal_image.data(), oidn::Format::Float3, width, height);
-  }
-
-  filter.setImage("output", output_image.data(), oidn::Format::Float3, width, height);
-
-  if (hdr)
-    filter.set("hdr", true);
-  if (srgb)
-    filter.set("srgb", true);
-
-  if (max_memory_mb >= 0)
-    filter.set("max_memory_mb", max_memory_mb);
-
-  if (!weights.empty())
-    filter.setData("weights", &weights, weights.size());
-
-  const bool showProgress =  num_benchmark_runs == 0 && verbose <= 2;
-  if (showProgress)
-  {
-    //filter.setProgressMonitorFunction(progressCallback);
-    //signal(SIGINT, signalHandler);
-  }
-
-  filter.commit();
-
-  auto timer = cli::print_timed("start denoising \n");
-
+  //print info of device
   const int versionMajor = device.get<int>("versionMajor");
   const int versionMinor = device.get<int>("versionMinor");
   const int versionPatch = device.get<int>("versionPatch");
 
+  cli::print_info("Device info: ");
   std::cout << "  version=" << versionMajor << "." << versionMinor << "." << versionPatch
             << ", filter=" << filter_type << std::endl;
 
   // Denoise the image
-  if (!showProgress)
-    std::cout << "Denoising" << std::endl;
+  auto timer = cli::print_timed("Start denoising ..\n");
+  ext::denoise(filter);
 
-  filter.execute();
-
-  //const double denoiseTime = timer.query();
-  if (showProgress)
-    std::cout << std::endl;
+  //print time for denoise process
   if (verbose <= 2)
-    //std::cout << "  msec=" << (1000. * denoiseTime) << std::endl;
+    printf("finished ");
     cli::print_elapsed(timer);
 
-  if (showProgress)
-  {
-    filter.setProgressMonitorFunction(nullptr);
-    signal(SIGINT, SIG_DFL);
-  }
 
+  // Save output image
   if (!output_filename.empty())
   {
-    // Save output image
-    std::cout << "Saving output" << std::endl;
+    cli::print_info("Saving output..");
+    
     if(img::save_image(output_filename, output_image,ioerror))
       cli::print_fatal(ioerror);
+    cli::print_info("Saved in "+output_filename);
   }
 
   /*

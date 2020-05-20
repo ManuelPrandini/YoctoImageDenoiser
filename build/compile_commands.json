@@ -1,0 +1,223 @@
+[
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8    -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto/CMakeFiles/yocto.dir/yocto_shape.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto/yocto_shape.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto/yocto_shape.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8    -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto/CMakeFiles/yocto.dir/yocto_image.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto/yocto_image.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto/yocto_image.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8    -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto/CMakeFiles/yocto.dir/yocto_trace.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto/yocto_trace.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto/yocto_trace.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8    -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto/CMakeFiles/yocto.dir/yocto_sceneio.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto/yocto_sceneio.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto/yocto_sceneio.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8    -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto/CMakeFiles/yocto.dir/ext/stb_image.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto/ext/stb_image.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto/ext/stb_image.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8    -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto/CMakeFiles/yocto.dir/ext/cgltf.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto/ext/cgltf.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto/ext/cgltf.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8    -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto/CMakeFiles/yocto.dir/ext/tinyexr.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto/ext/tinyexr.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto/ext/tinyexr.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8   -I../libs  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto_pathtrace/CMakeFiles/yocto_pathtrace.dir/yocto_pathtrace.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_pathtrace/yocto_pathtrace.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_pathtrace/yocto_pathtrace.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8   -I../libs -I../libs/oidn/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto_extension/CMakeFiles/yocto_extension.dir/yocto_extension.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_extension/yocto_extension.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_extension/yocto_extension.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8   -I../libs -I../libs/oidn/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto_extension/CMakeFiles/yocto_extension.dir/ext/image_io.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_extension/ext/image_io.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_extension/ext/image_io.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8  -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DYOCTO_OPENGL -I../libs/yocto_gui/. -I../libs -I../libs/yocto_gui/ext/glfw/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto_gui/CMakeFiles/yocto_gui.dir/yocto_gui.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/yocto_gui.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/yocto_gui.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8  -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DYOCTO_OPENGL -I../libs/yocto_gui/. -I../libs -I../libs/yocto_gui/ext/glfw/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto_gui/CMakeFiles/yocto_gui.dir/ext/imgui/imgui.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/imgui/imgui.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/imgui/imgui.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8  -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DYOCTO_OPENGL -I../libs/yocto_gui/. -I../libs -I../libs/yocto_gui/ext/glfw/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto_gui/CMakeFiles/yocto_gui.dir/ext/imgui/imgui_draw.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/imgui/imgui_draw.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/imgui/imgui_draw.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8  -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DYOCTO_OPENGL -I../libs/yocto_gui/. -I../libs -I../libs/yocto_gui/ext/glfw/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto_gui/CMakeFiles/yocto_gui.dir/ext/imgui/imgui_widgets.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/imgui/imgui_widgets.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/imgui/imgui_widgets.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8  -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DYOCTO_OPENGL -I../libs/yocto_gui/. -I../libs -I../libs/yocto_gui/ext/glfw/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto_gui/CMakeFiles/yocto_gui.dir/ext/imgui/imgui_impl_glfw.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/imgui/imgui_impl_glfw.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/imgui/imgui_impl_glfw.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8  -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DYOCTO_OPENGL -I../libs/yocto_gui/. -I../libs -I../libs/yocto_gui/ext/glfw/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o libs/yocto_gui/CMakeFiles/yocto_gui.dir/ext/imgui/imgui_impl_opengl3.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/imgui/imgui_impl_opengl3.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/imgui/imgui_impl_opengl3.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DIMGUI_IMPL_OPENGL_LOADER_GLAD -DYOCTO_OPENGL -I../libs/yocto_gui/. -I../libs -I../libs/yocto_gui/ext/glfw/include  -O3 -DNDEBUG   -fpermissive -o libs/yocto_gui/CMakeFiles/yocto_gui.dir/ext/glad/glad.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glad/glad.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glad/glad.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -Wdeclaration-after-statement -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/context.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/context.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/context.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -Wdeclaration-after-statement -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/init.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/init.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/init.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -Wdeclaration-after-statement -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/input.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/input.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/input.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -Wdeclaration-after-statement -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/monitor.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/monitor.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/monitor.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -Wdeclaration-after-statement -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/vulkan.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/vulkan.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -Wdeclaration-after-statement -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/window.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/window.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/window.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/x11_init.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/x11_init.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/x11_monitor.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/x11_monitor.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/x11_window.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/x11_window.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/xkb_unicode.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/xkb_unicode.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/posix_time.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/posix_time.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/posix_thread.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/posix_thread.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/glx_context.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/glx_context.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/egl_context.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/egl_context.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/osmesa_context.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/osmesa_context.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/gcc-8 -DYOCTO_OPENGL -D_GLFW_USE_CONFIG_H -I../libs/yocto_gui/ext/glfw/include -I../libs/yocto_gui/ext/glfw/src -Ilibs/yocto_gui/glfw/src  -O3 -DNDEBUG -fPIC   -fpermissive -Wall -o libs/yocto_gui/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o   -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/linux_joystick.c",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/yocto_gui/ext/glfw/src/linux_joystick.c"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8   -I../libs  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o apps/yscenetrace/CMakeFiles/yscenetrace.dir/yscenetrace.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/yscenetrace/yscenetrace.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/yscenetrace/yscenetrace.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8   -I../libs -I../libs/yocto_gui/ext/glfw/include -I../libs/oidn/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o apps/yimagedenoise/CMakeFiles/yimagedenoise.dir/yimagedenoise.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/yimagedenoise/yimagedenoise.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/yimagedenoise/yimagedenoise.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8   -I../libs -I../libs/yocto_gui/ext/glfw/include -I../libs/oidn/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o apps/prova/CMakeFiles/prova.dir/prova.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/prova/prova.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/prova/prova.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build",
+  "command": "/usr/bin/g++-8   -I../libs -I../libs/yocto_gui/ext/glfw/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o apps/ysceneitraces/CMakeFiles/ysceneitraces.dir/ysceneitraces.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/ysceneitraces/ysceneitraces.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/ysceneitraces/ysceneitraces.cpp"
+}
+]

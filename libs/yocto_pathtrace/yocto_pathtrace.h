@@ -165,6 +165,7 @@ enum struct shader_type {
   path,      // path tracing with mis
   eyelight,  // eyelight rendering
   normal,    // normal rendering
+  color, // color rendering (albedo)
 };
 
 // Default trace seed
@@ -183,7 +184,7 @@ struct trace_params {
 };
 
 const auto shader_names = std::vector<std::string>{
-    "naive", "path", "eyelight", "normal"};
+    "naive", "path", "eyelight", "normal","color"};
 
 // Progress report callback
 using progress_callback =

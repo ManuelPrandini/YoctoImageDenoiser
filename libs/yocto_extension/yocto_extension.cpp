@@ -79,27 +79,122 @@ using math::zero4i;
 // -----------------------------------------------------------------------------
 namespace yocto::extension {
 
-    void create_device()
+
+    oidn::DeviceRef create_device(int num_threads = -1, int set_affinity = -1, int verbose = -1)
     {
         // Create an Intel Open Image Denoise device
-        oidn::DeviceRef device = oidn::newDevice();
-        device.commit();
-        printf("Device created!\n");
-    }
-
+        auto device = oidn::newDevice();
     
-    /*
-    oidn::ImageBuffer load_imageBuffer(std::string& filename, int channels = 0)
-    {
-        auto image = oidn::loadImage(filename,channels);
-        if(image == NULL)
-        {
-            printf("nessuna immagine!");
-        }
-        printf("immagine caricata da : %s",filename);
-        return image;
-    }
-    */
+        const char* errorMessage;
+        if (device.getError(errorMessage) != oidn::Error::None)
+            cli::print_fatal(errorMessage);
+  
 
+        //set parameters of device
+        if (num_threads > 0)
+            device.set("num_threads", num_threads);
+        if (set_affinity >= 0)
+            device.set("set_affinity", bool(set_affinity));
+        if (verbose >= 0)
+            device.set("verbose", verbose);
+
+        //commit all setting
+        device.commit();
+
+        return device;
+    }
+
+    oidn::FilterRef set_filter_to_device(oidn::DeviceRef& device, int width, int height,
+    img::image<vec3f>& color_image, img::image<vec3f>& output_image,  
+    img::image<vec3f>& albedo_image,
+    img::image<vec3f>& normal_image, 
+    bool hdr = false, bool srgb = false, int max_memory_mb = -1, std::string filter_type = "RT")
+    { 
+        auto filter = device.newFilter(filter_type.c_str());
+
+        //input
+        cli::print_info("set filter for color image");
+        filter.setImage("color", color_image.data(), oidn::Format::Float3, width, height);
+       
+        //albedo
+        cli::print_info("set filter for albedo");
+        filter.setImage("albedo", albedo_image.data(), oidn::Format::Float3, width, height);
+        
+        //normal
+        cli::print_info("set filter for normal");
+        filter.setImage("normal", normal_image.data(), oidn::Format::Float3, width, height);
+        
+        //output
+        filter.setImage("output", output_image.data(), oidn::Format::Float3, width, height);
+
+        if (hdr)
+            filter.set("hdr", true);
+        if (srgb)
+            filter.set("srgb", true);
+
+        if (max_memory_mb >= 0)
+            filter.set("max_memory_mb", max_memory_mb);
+
+        filter.commit();
+
+        return filter;
+    }
+
+    oidn::FilterRef set_filter_to_device(oidn::DeviceRef& device, int width, int height,
+    img::image<vec3f>& color_image, img::image<vec3f>& output_image,  
+    bool hdr = false, bool srgb = false, int max_memory_mb = -1, std::string filter_type = "RT")
+    { 
+        auto filter = device.newFilter(filter_type.c_str());
+
+        cli::print_info("set filter for color image");
+        filter.setImage("color", color_image.data(), oidn::Format::Float3, width, height);
+
+        filter.setImage("output", output_image.data(), oidn::Format::Float3, width, height);
+
+        if (hdr)
+            filter.set("hdr", true);
+        if (srgb)
+            filter.set("srgb", true);
+
+        if (max_memory_mb >= 0)
+            filter.set("max_memory_mb", max_memory_mb);
+
+        filter.commit();
+
+        return filter;
+    }
+
+    oidn::FilterRef set_filter_to_device(oidn::DeviceRef& device, int width, int height,
+    img::image<vec3f>& color_image, img::image<vec3f>& output_image,  
+    img::image<vec3f>& albedo_image,
+    bool hdr = false, bool srgb = false, int max_memory_mb = -1, std::string filter_type = "RT")
+    { 
+        auto filter = device.newFilter(filter_type.c_str());
+
+        cli::print_info("set filter for color image");
+        filter.setImage("color", color_image.data(), oidn::Format::Float3, width, height);
+       
+        cli::print_info("set filter for albedo");
+        filter.setImage("albedo", albedo_image.data(), oidn::Format::Float3, width, height);
+
+        filter.setImage("output", output_image.data(), oidn::Format::Float3, width, height);
+
+        if (hdr)
+            filter.set("hdr", true);
+        if (srgb)
+            filter.set("srgb", true);
+
+        if (max_memory_mb >= 0)
+            filter.set("max_memory_mb", max_memory_mb);
+
+        filter.commit();
+
+        return filter;
+    }
+
+    void denoise( oidn::FilterRef& filter)
+    {
+        filter.execute();
+    }
 
 }  // namespace yocto::pathtrace
