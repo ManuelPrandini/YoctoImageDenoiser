@@ -217,6 +217,12 @@
 
 {
   "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal",
+  "command": "/usr/bin/c++   -I../../libs -I../../libs/yocto_gui/ext/glfw/include -I../../libs/oidn/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o apps/prova_nlm/CMakeFiles/prova_nlm.dir/prova_nlm.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/prova_nlm/prova_nlm.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/prova_nlm/prova_nlm.cpp"
+},
+
+{
+  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal",
   "command": "/usr/bin/c++   -I../../libs -I../../libs/yocto_gui/ext/glfw/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o apps/ysceneitraces/CMakeFiles/ysceneitraces.dir/ysceneitraces.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/ysceneitraces/ysceneitraces.cpp",
   "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/ysceneitraces/ysceneitraces.cpp"
 }

@@ -33,6 +33,8 @@
 #include <future>
 #include <memory>
 #include <mutex>
+
+
 using namespace std::string_literals;
 
 // -----------------------------------------------------------------------------
@@ -196,5 +198,6 @@ namespace yocto::extension {
     {
         filter.execute();
     }
+
 
 }  // namespace yocto::pathtrace

@@ -30,6 +30,9 @@
 /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/prova/CMakeFiles/rebuild_cache.dir
 /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/prova/CMakeFiles/edit_cache.dir
 /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/prova/CMakeFiles/prova.dir
+/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/prova_nlm/CMakeFiles/rebuild_cache.dir
+/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/prova_nlm/CMakeFiles/edit_cache.dir
+/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/prova_nlm/CMakeFiles/prova_nlm.dir
 /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/ysceneitraces/CMakeFiles/rebuild_cache.dir
 /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/ysceneitraces/CMakeFiles/edit_cache.dir
 /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/ysceneitraces/CMakeFiles/ysceneitraces.dir

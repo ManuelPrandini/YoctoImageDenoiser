@@ -42,6 +42,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/apps/yscenetrace/cmake_install.cmake")
   include("/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/apps/yimagedenoise/cmake_install.cmake")
   include("/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/apps/prova/cmake_install.cmake")
+  include("/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/apps/prova_nlm/cmake_install.cmake")
   include("/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/apps/ysceneitraces/cmake_install.cmake")
 
 endif()

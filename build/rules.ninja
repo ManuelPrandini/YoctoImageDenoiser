@@ -184,6 +184,25 @@ rule CXX_EXECUTABLE_LINKER__prova
 #############################################
 # Rule for compiling CXX files.
 
+rule CXX_COMPILER__prova_nlm
+  depfile = $DEP_FILE
+  deps = gcc
+  command = /usr/bin/g++-8  $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX executable.
+
+rule CXX_EXECUTABLE_LINKER__prova_nlm
+  command = $PRE_LINK && /usr/bin/g++-8  $FLAGS  $LINK_FLAGS $in  -o $TARGET_FILE $LINK_PATH $LINK_LIBRARIES && $POST_BUILD
+  description = Linking CXX executable $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
 rule CXX_COMPILER__ysceneitraces
   depfile = $DEP_FILE
   deps = gcc

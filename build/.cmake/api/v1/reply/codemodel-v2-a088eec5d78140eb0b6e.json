@@ -46,7 +46,7 @@
 					"source" : "libs/yocto",
 					"targetIndexes" : 
 					[
-						3
+						4
 					]
 				},
 				{
@@ -60,7 +60,7 @@
 					"source" : "libs/yocto_pathtrace",
 					"targetIndexes" : 
 					[
-						6
+						7
 					]
 				},
 				{
@@ -74,7 +74,7 @@
 					"source" : "libs/yocto_extension",
 					"targetIndexes" : 
 					[
-						4
+						5
 					]
 				},
 				{
@@ -92,7 +92,7 @@
 					"source" : "libs/yocto_gui",
 					"targetIndexes" : 
 					[
-						5
+						6
 					]
 				},
 				{
@@ -130,7 +130,8 @@
 						9,
 						10,
 						11,
-						12
+						12,
+						13
 					],
 					"minimumCMakeVersion" : 
 					{
@@ -151,7 +152,7 @@
 					"source" : "apps/yscenetrace",
 					"targetIndexes" : 
 					[
-						8
+						9
 					]
 				},
 				{
@@ -165,7 +166,7 @@
 					"source" : "apps/yimagedenoise",
 					"targetIndexes" : 
 					[
-						2
+						3
 					]
 				},
 				{
@@ -183,6 +184,20 @@
 					]
 				},
 				{
+					"build" : "apps/prova_nlm",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 8,
+					"projectIndex" : 0,
+					"source" : "apps/prova_nlm",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
 					"build" : "apps/ysceneitraces",
 					"minimumCMakeVersion" : 
 					{
@@ -193,7 +208,7 @@
 					"source" : "apps/ysceneitraces",
 					"targetIndexes" : 
 					[
-						7
+						8
 					]
 				}
 			],
@@ -217,7 +232,8 @@
 						9,
 						10,
 						11,
-						12
+						12,
+						13
 					],
 					"name" : "yocto_pathextension",
 					"targetIndexes" : 
@@ -229,7 +245,8 @@
 						5,
 						6,
 						7,
-						8
+						8,
+						9
 					]
 				},
 				{
@@ -260,6 +277,13 @@
 					"id" : "prova::@166e960133341d863311",
 					"jsonFile" : "target-prova-Release-700acb5ff1264214cf5e.json",
 					"name" : "prova",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "prova_nlm::@8ee45f92057666951f40",
+					"jsonFile" : "target-prova_nlm-Release-7ce9839b102394fd9406.json",
+					"name" : "prova_nlm",
 					"projectIndex" : 0
 				},
 				{
@@ -298,7 +322,7 @@
 					"projectIndex" : 0
 				},
 				{
-					"directoryIndex" : 12,
+					"directoryIndex" : 13,
 					"id" : "ysceneitraces::@1c2fb099d6103aa362d8",
 					"jsonFile" : "target-ysceneitraces-Release-6841946617ee0a99f477.json",
 					"name" : "ysceneitraces",

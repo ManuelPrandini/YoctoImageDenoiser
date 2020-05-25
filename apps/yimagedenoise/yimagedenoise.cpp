@@ -321,7 +321,7 @@ int main(int argc, char* argv[])
       std::cout << "Saving output" << std::endl;
       saveImage(outputFilename, output, srgb);
     }
-
+    
     if (ref)
     {
       // Verify the output values
