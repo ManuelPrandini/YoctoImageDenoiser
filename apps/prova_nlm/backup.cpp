@@ -22,9 +22,8 @@ using namespace std::string_literals;
 using namespace oidn;
 
 
-img::image<vec3f> add_padding( const img::image<vec3f> &input_image,int half_patch_window, int half_search_window)
+img::image<vec3f> add_padding( const img::image<vec3f> &input_image,int pad)
 {
-  auto pad = half_patch_window + half_search_window;
   auto new_width = input_image.size().x + (2 * pad);
   auto new_height = input_image.size().y + (2 * pad);
   auto padded_dimension = vec2i{new_width,new_height};
@@ -35,7 +34,6 @@ img::image<vec3f> add_padding( const img::image<vec3f> &input_image,int half_pat
     for(int i = 0; i < input_image.size().x; i++)
       padded_image[{i + pad,j + pad}] = input_image[{i,j}];
   
-
   return padded_image;
 }
 
@@ -51,7 +49,18 @@ vec3f get_mean_pixel( const img::image<vec3f> & input_image)
   return sum;
 }
 
-float get_variance(vec3f pixel_color, vec3f mean_pixel)
+//mapping color from (0,1) to (0,255) or viceversa based on boolean parameter
+void mapping_colors(img::image<vec3f> &input_image, bool to_255 = false)
+{
+    for(auto j = 0; j < input_image.size().y ; j++)
+      for(auto i = 0 ; i < input_image.size().x ; i++)
+      {
+        if (to_255) input_image[{i,j}] *= 255;
+        else input_image[{i,j}] /= 255; 
+      }
+}
+
+float get_variance(const vec3f &pixel_color,const vec3f &mean_pixel)
 {
   return pow(pixel_color.x - mean_pixel.x, 2) + pow(pixel_color.y - mean_pixel.y, 2) + pow(pixel_color.z - mean_pixel.z, 2);
 }
@@ -63,6 +72,8 @@ int main(int argc, char *argv[])
   //define images
   auto input_filename = ""s;
   auto output_filename = "out.jpg"s;
+  auto albedo_filename = ""s;
+  auto normal_filename = ""s;
 
   auto half_patch_window = 1;
   auto half_search_window = 2;
@@ -70,13 +81,17 @@ int main(int argc, char *argv[])
   auto hf = 0.0f;
   auto color_parameter = 0.0f;
   auto distance_parameter = 0.0f;
+  auto b_variance = false;
 
   
   auto cli = cli::make_cli("prova_nlm", " prova");
   add_option(cli, "-p", half_patch_window, "Half size of the patch window.");
   add_option(cli,"-s",half_search_window,"Half size of search window.");
   add_option(cli,"-h",hf,"Filtering parameter.");
-  add_option(cli,"-a",sigma,"standard deviation of the gaussian error.");
+  add_option(cli,"-a",sigma,"sigma parameter on the image.");
+  add_option(cli,"-v",b_variance, "apply per-pixel color variance of Rousselle at al.");
+  add_option(cli,"--alb",albedo_filename, "Albedo image.");
+  add_option(cli,"--nrm",normal_filename, "Normal image.");
   //add_option(cli,"-c",color_parameter,"color parameter.");
   //add_option(cli,"-d",distance_parameter,"distance parameter.");
 
@@ -91,139 +106,187 @@ int main(int argc, char *argv[])
   if(half_search_window <= half_patch_window)
     cli::print_fatal("Error: half_search_window should be greather than half_patch_window!");
 
-
-  // load input image
   auto ioerror = ""s;
   auto input_image = img::image<vec3f>{};
+  auto albedo_image = img::image<vec3f>{};
+  auto normal_image = img::image<vec3f>{};
+
+  // load input image
   if(!img::load_image(input_filename,input_image,ioerror))
     cli::print_fatal(ioerror);
+  cli::print_info("Input image loaded!");
 
   auto width = input_image.size().x;
   auto height = input_image.size().y;
+
+  // load albedo image
+  if(!albedo_filename.empty())
+  {
+    if(!img::load_image(albedo_filename,albedo_image,ioerror))
+      cli::print_fatal(ioerror);
+    cli::print_info("Albedo image loaded!");
+
+    //check dimensions
+    if(albedo_image.size().x != width && albedo_image.size().y != height)
+      cli::print_fatal("Error: albedo image size and input image size are different!");
+  }
+
+  // load normal image
+  if(!normal_filename.empty())
+  {
+    if(!img::load_image(normal_filename,normal_image,ioerror))
+      cli::print_fatal(ioerror);
+    cli::print_info("Normal image loaded!");
+
+    //check dimensions
+    if(normal_image.size().x != width && normal_image.size().y != height)
+      cli::print_fatal("Error: normal image size and input image size are different!");
+  }
+
   auto pad = half_patch_window + half_search_window;
   hf =(float) (hf * sigma);
   auto epsilon = 1e-7f;
   auto patch_window_dimension = (half_patch_window * 2) + 1;
   auto search_window_dimension = (half_search_window * 2) + 1;
+  auto mean_pixel = zero3f;
 
-  //define denoised output image and weights
-  auto output_image = img::image<vec3f>(input_image.size(),zero3f);
-  auto weights = std::vector<float>();
+  //define denoised output image 
+  //auto output_image = img::image<vec3f>(input_image.size(),zero3f);
 
-  
-  //mapping color from (0,1) to (0,255)
-  for(auto j = 0; j < height ; j++)
-    for(auto i = 0 ; i < width ; i++)
-      input_image[{i,j}] *= 255;
-  
+  //map color from [0,1] to [0,255]
+  mapping_colors(input_image,true);
+  if(!albedo_image.empty()) mapping_colors(albedo_image,true);
+  if(!normal_image.empty()) mapping_colors(normal_image,true);
+
   //get mean pixel
-  auto mean_pixel = get_mean_pixel(input_image);
+  if(b_variance) mean_pixel = get_mean_pixel(input_image);
 
-  //add pad to image (patch_window + search_window)
-  auto symmetrized_image = add_padding(input_image,half_patch_window,half_search_window);
+  //add pad to  input image (patch_window + search_window)
+  auto symmetrized_image = add_padding(input_image,pad);
+  cli::print_info("Input image padded!");
 
-  cli::print_info("image padded!\n");
-
-  //main loop -- iterate on input image (x1,x2) is the center of first patch
-  cli::print_progress("compute output", 0, input_image.size().x * input_image.size().y);
-  for( auto x2 = 0; x2 <= height -1 ; x2++)
+  auto symmetrized_albedo_image = img::image<vec3f>({width + (2 * pad),height + (2 * pad)},zero3f);
+  //add pad to albedo image if exists (patch_window + search_window)
+  if(!albedo_image.empty())
   {
+    symmetrized_albedo_image = add_padding(albedo_image,pad);
+    cli::print_info("Albedo image padded!");
+  }
+
+  auto symmetrized_normal_image = img::image<vec3f>({width + (2 * pad),height + (2 * pad)},zero3f);
+  //add pad to normal image if exists (patch_window + search_window)
+  if(!normal_image.empty())
+  {
+    symmetrized_normal_image = add_padding(normal_image,pad);
+    cli::print_info("Normal image padded!");
+  }
+
+  /*
+  //main loop -- iterate on input image (x1,x2) is the center of first patch
+  cli::print_progress("denoising...", 0, width * height);
+  for( auto x2 = 0; x2 <= height -1 ; x2++) {
     for( auto x1 = 0; x1 <= width - 1 ; x1++)
     {
-      cli::print_progress("compute output", x1 + (input_image.size().y * x2), input_image.size().x * input_image.size().y);
       //compute NLM weights (y1,y2) is the center of the second patch
+      auto sum_weights = 0.0f;
+      auto denoised_color = zero3f;
 
       //for each pixel (y1,y2) in research window 
-      for ( auto y2 = x2 - half_search_window; y2 <= x2 + half_search_window;y2++)
-      {
-        for( auto y1 = x1 -half_search_window; y1 <= x1 + half_search_window ;y1++)
+      for ( auto y2 = x2 - half_search_window; y2 <= x2 + half_search_window;y2++){
+        for( auto y1 = x1 - half_search_window; y1 <= x1 + half_search_window ;y1++)
         {
           //compute distance between two patches
           auto dist2 = 0.0f;
           
-          //compute distance of the patches
-          for(auto z2 = -half_patch_window; z2<= half_patch_window; z2++)
-          {
+          for(auto z2 = -half_patch_window; z2<= half_patch_window; z2++){
             for(auto z1 = -half_patch_window; z1<= half_patch_window; z1++)
             {
                 auto &p = symmetrized_image[{x1+pad+z1 , x2 + pad + z2}];
                 auto &q = symmetrized_image[{y1+pad+z1 , y2 + pad + z2}];
-                if( x1 == width / 2 && x2 == height / 2)
-                {
-                  printf("colore p %f \n",p);
-                  printf("colore q %f \n",q);
-                }
-                //auto var_p = get_variance(p,mean_pixel );
-                //auto var_q = get_variance(q , mean_pixel);
 
-                dist2 += (pow(p.x - q.x,2) + pow(p.y - q.y,2) + pow(p.z - q.z,2)) - (2 * pow(sigma,2));//(var_p + min(var_p,var_q))) / ( (epsilon + var_q + var_p) / (2 * pow(sigma,2)) );
+                if(b_variance)
+                {
+                  //get variance of both pixels
+                  auto var_p = get_variance(p, mean_pixel);
+                  auto var_q = get_variance(q , mean_pixel);
+
+                  //apply per-pixel color variance distance by Rousselle et al. formula
+                  dist2 += ((pow(p.x - q.x,2) + pow(p.y - q.y,2) + pow(p.z - q.z,2)) - (var_p + min(var_p,var_q))) / ( (hf * hf) * (var_p + var_q) + epsilon);//( (epsilon + var_q + var_p) / (2 * pow(sigma,2)) );
+                } 
+                else dist2 += (pow(p.x - q.x,2) + pow(p.y - q.y,2) + pow(p.z - q.z,2)) - (2 * pow(sigma,2));
+                //dist2 += (pow(p.x - q.x,2) + pow(p.y - q.y,2) + pow(p.z - q.z,2));
             }
           }
-
-          //printf("distanza %f \n" , dist2);
-          //printf("dist %f, %f, %f \n",dist2.x,dist2.y,dist2.z);
+          //dist2 -= (2 * pow(sigma,2));
           //dist2 = max(0.0f,dist2 - 2 * (sigma * sigma));
-          auto den_dist =  pow(patch_window_dimension,2);
+          auto den_dist =  3 * pow(patch_window_dimension,2);
           dist2 = max(0.0f, dist2/den_dist);
 
-          //printf("weight %i, %i, %i \n", dist2.x,dist2.y,dist2.z);
-          
+          auto w_albedo = 0.0f;
+          auto w_normal = 0.0f;
+          //compute distance of albedo pixels if are not empty
+          if(!albedo_image.empty())
+          {
+            auto &p = symmetrized_albedo_image[{x1 + pad, x2 + pad}] ;
+            auto &q = symmetrized_albedo_image[{y1 + pad, y2 + pad}] ;
+            auto dist_albedo = pow(p.x - q.x,2) + pow(p.y - q.y,2) + pow(p.z - q.z,2);
+            w_albedo = exp(-(dist_albedo / (2 * pow(sigma,2) ) ) );
+            //printf("dist albedo %f \n",dist_albedo);
+            //printf("w albedo %f \n",w_albedo);
+          }
 
-          //dist2 /= den_dist;
+          //compute distance of normal pixels if are not empty
+          if(!albedo_image.empty())
+          {
+            auto &p = symmetrized_normal_image[{x1 + pad, x2 + pad}] ;
+            auto &q = symmetrized_normal_image[{y1 + pad, y2 + pad}] ;
+            auto dist_normal = pow(p.x - q.x,2) + pow(p.y - q.y,2) + pow(p.z - q.z,2);
+            w_normal = exp(-(dist_normal / (2 * pow(sigma,2) ) ) );
+            //printf("dist albedo %f \n",dist_albedo);
+            //printf("w albedo %f \n",w_albedo);
+          }
 
           //calculate weight of (x,y)
-          //auto w =  math::exp(-max(dist2 - 2*pow2(sigma),0.0f)/(3*pow2(hf)));
           auto &p = symmetrized_image[{x1 + pad, x2 + pad}] ;
           auto &q = symmetrized_image[{y1 + pad, y2 + pad}] ;
-          auto dist = pow(p.x - q.x,2) + pow(p.y - q.y,2) + pow(p.z - q.z,2) - (2 * (sigma * sigma)); 
-          auto w = exp(-dist / (2 * pow(sigma,2))) * exp(-dist2 / ( pow(hf,2) * (2*pow(sigma,2)) ) ); 
-          //printf("weight %f \n",w);
-          //printf("weight %f, %f, %f \n",w);
-          // ultimo --> auto w = math::exp(-dist2 / (hf * hf));
-          //if(x1 == 15 && x2 == 20)
-           // printf("weight %f  dist %f \n",w,dist2);
-          //auto w = exp(-(dist2/(h*h)));
-          
-          weights.push_back(w);
+          auto dist = pow(p.x - q.x,2) + pow(p.y - q.y,2) + pow(p.z - q.z,2) ;//- (2 * (sigma * sigma)); 
+          auto w = (exp(-dist / (2 * pow(sigma,2))) * exp(-dist2 / ( pow(hf,2) * (2*pow(sigma,2)) ) ))
+           * (!albedo_image.empty() ? w_albedo : 1)
+           * (!normal_image.empty() ? w_normal : 1); 
+
+          //printf("w tot %f \n",w);
+          //compute denoised pixel (x1,x2)
+          denoised_color += w * symmetrized_image[{y1+pad,y2+pad}];
+
+          //sum weights
+          sum_weights += w;
         }
       }
 
-      //compute denoised pixel (x1,x2)
-        auto r = zero3f;
-        auto s = 0.0f;
-        auto cont = 0;
-        for ( auto y2 = x2 - half_search_window; y2 <= x2 + half_search_window; y2++)
-        {
-          for( auto y1 = x1 - half_search_window; y1 <= x1 + half_search_window; y1++)
-          {
-            r += weights.at(cont) * symmetrized_image[{y1+pad,y2+pad}];
-            s += weights.at(cont);
-            cont++;
-          }
-        }
-        //final estimate based on the assumption that original planes take values in [0,255]
-        output_image[{x1,x2}] = r / s; //min(math::max(r/s,0),255);
-          if(x1 == 15 && x2 == 20)
-              printf("colore %i %i %i \n",output_image[{x1,x2}].x,output_image[{x1,x2}].y,output_image[{x1,x2}].z);
-      
-      //clear weights 
-      weights.clear();
+      //final estimate based on the assumption that original planes take values in [0,255]
+      output_image[{x1,x2}] = denoised_color / sum_weights; //min(math::max(r/sum_weights,0),255);
     }
+    cli::print_progress("denoising...", x2, height);
   }
+  cli::print_progress("denoising...Done!", height, height);
+  */
+
+  // compute denoising with non local means on input images
+  auto aux_images = std::vector<img::image<vec3f>>();
+  if(!symmetrized_normal_image.empty()) aux_images.push_back(symmetrized_normal_image);
+  if(!symmetrized_albedo_image.empty()) aux_images.push_back(symmetrized_albedo_image);
+
+  auto output_image = ext::non_local_means_denoiser(symmetrized_image, aux_images,
+  height ,width,half_patch_window,half_search_window,hf,sigma,b_variance,mean_pixel);
+
+  //remap color from [0,255] to [0,1] on output image
+  mapping_colors(output_image,false);
 
   
-  // rescaling colors
-  //mapping color from (0,1) to (0,255)
-  for(auto j = 0; j < height ; j++)
-    for(auto i = 0 ; i < width ; i++)
-      output_image[{i,j}] /= 255;
-  
-
-  //auto output_image = add_padding(input_image,half_patch_window,half_search_window);
   //save image
   if(!img::save_image(output_filename,output_image,ioerror))
     cli::print_fatal(ioerror);
-  printf("\n Fine\n");
+  cli::print_info("Output saved correctly! \n");
 
   return 0;
 }

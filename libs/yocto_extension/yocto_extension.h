@@ -106,6 +106,21 @@ namespace yocto::extension {
 
     //execute filter
     void denoise( oidn::FilterRef& filter);
+
+    //add pad to input image setting black pixels on board
+    img::image<vec3f> add_padding( const img::image<vec3f> &input_image,int pad);
+
+    //get mean pixel value of the input image
+    vec3f get_mean_pixel( const img::image<vec3f> & input_image);
+
+    //mapping color from (0,1) to (0,255) or viceversa based on boolean parameter
+    void mapping_colors(img::image<vec3f> &input_image, bool to_255 = false);
+
+    //apply non local means denoiser on symmetrized image ( input images with padding )
+    img::image<vec3f> non_local_means_denoiser(const img::image<vec3f> &symmetrized_image,
+    const std::vector<img::image<vec3f>> &aux_images,
+    int height, int width, int half_patch_window = 3, int half_search_window = 10,float hf = 25.0f, float sigma = 50.0f,
+    bool b_variance = false, vec3f mean_pixel = zero3f)  ;
     
 }  // namespace yocto::pathtrace
 
