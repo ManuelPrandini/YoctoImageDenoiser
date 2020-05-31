@@ -58,7 +58,6 @@ int main(int argc, char* argv[])
   */
   try
   {
-  
     // parse command line
     auto cli = cli::make_cli("yimgdenoise", " Intel(R) Open Image denoiser");
     add_option(cli, "--filter,-f", filter_type, "Filter type RT|RTLightmap .");

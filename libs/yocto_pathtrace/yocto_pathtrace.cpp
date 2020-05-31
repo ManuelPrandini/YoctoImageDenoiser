@@ -1433,7 +1433,7 @@ static vec4f trace_normal(const ptr::scene* scene, const ray3f& ray,
   return {normal * 0.5f + 0.5f, 1};
 }
 
-// Color for Albedo immages rendering
+// Color for Albedo images rendering
 static vec4f trace_color(const ptr::scene* scene,
     const ray3f& ray_, rng_state& rng, const trace_params& params) {
   // initialize
