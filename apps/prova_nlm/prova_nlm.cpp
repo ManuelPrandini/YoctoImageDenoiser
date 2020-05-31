@@ -73,6 +73,7 @@ int main(int argc, char *argv[])
   auto input_filename = ""s;
   auto output_filename = "out.jpg"s;
   auto albedo_filename = ""s;
+  auto normal_filename = ""s;
 
   auto half_patch_window = 1;
   auto half_search_window = 2;
@@ -90,6 +91,7 @@ int main(int argc, char *argv[])
   add_option(cli,"-a",sigma,"sigma parameter on the image.");
   add_option(cli,"-v",b_variance, "apply per-pixel color variance of Rousselle at al.");
   add_option(cli,"--alb",albedo_filename, "Albedo image.");
+  add_option(cli,"--nrm",normal_filename, "Normal image.");
   //add_option(cli,"-c",color_parameter,"color parameter.");
   //add_option(cli,"-d",distance_parameter,"distance parameter.");
 
@@ -107,11 +109,15 @@ int main(int argc, char *argv[])
   auto ioerror = ""s;
   auto input_image = img::image<vec3f>{};
   auto albedo_image = img::image<vec3f>{};
+  auto normal_image = img::image<vec3f>{};
 
   // load input image
   if(!img::load_image(input_filename,input_image,ioerror))
     cli::print_fatal(ioerror);
   cli::print_info("Input image loaded!");
+
+  auto width = input_image.size().x;
+  auto height = input_image.size().y;
 
   // load albedo image
   if(!albedo_filename.empty())
@@ -119,12 +125,24 @@ int main(int argc, char *argv[])
     if(!img::load_image(albedo_filename,albedo_image,ioerror))
       cli::print_fatal(ioerror);
     cli::print_info("Albedo image loaded!");
+
+    //check dimensions
+    if(albedo_image.size().x != width && albedo_image.size().y != height)
+      cli::print_fatal("Error: albedo image size and input image size are different!");
   }
 
-  
+  // load normal image
+  if(!normal_filename.empty())
+  {
+    if(!img::load_image(normal_filename,normal_image,ioerror))
+      cli::print_fatal(ioerror);
+    cli::print_info("Normal image loaded!");
 
-  auto width = input_image.size().x;
-  auto height = input_image.size().y;
+    //check dimensions
+    if(normal_image.size().x != width && normal_image.size().y != height)
+      cli::print_fatal("Error: normal image size and input image size are different!");
+  }
+
   auto pad = half_patch_window + half_search_window;
   hf =(float) (hf * sigma);
   auto epsilon = 1e-7f;
@@ -138,7 +156,7 @@ int main(int argc, char *argv[])
   //map color from [0,1] to [0,255]
   mapping_colors(input_image,true);
   if(!albedo_image.empty()) mapping_colors(albedo_image,true);
-
+  if(!normal_image.empty()) mapping_colors(normal_image,true);
 
   //get mean pixel
   if(b_variance) mean_pixel = get_mean_pixel(input_image);
@@ -153,6 +171,14 @@ int main(int argc, char *argv[])
   {
     symmetrized_albedo_image = add_padding(albedo_image,pad);
     cli::print_info("Albedo image padded!");
+  }
+
+  auto symmetrized_normal_image = img::image<vec3f>({width + (2 * pad),height + (2 * pad)},zero3f);
+  //add pad to normal image if exists (patch_window + search_window)
+  if(!normal_image.empty())
+  {
+    symmetrized_normal_image = add_padding(normal_image,pad);
+    cli::print_info("Normal image padded!");
   }
 
 
@@ -196,24 +222,37 @@ int main(int argc, char *argv[])
           auto den_dist =  3 * pow(patch_window_dimension,2);
           dist2 = max(0.0f, dist2/den_dist);
 
-          auto dist_albedo = 0.0f;
           auto w_albedo = 0.0f;
+          auto w_normal = 0.0f;
+          //compute distance of albedo pixels if are not empty
           if(!albedo_image.empty())
           {
             auto &p = symmetrized_albedo_image[{x1 + pad, x2 + pad}] ;
             auto &q = symmetrized_albedo_image[{y1 + pad, y2 + pad}] ;
-            dist_albedo = pow(p.x - q.x,2) + pow(p.y - q.y,2) + pow(p.z - q.z,2);
+            auto dist_albedo = pow(p.x - q.x,2) + pow(p.y - q.y,2) + pow(p.z - q.z,2);
             w_albedo = exp(-(dist_albedo / (2 * pow(sigma,2) ) ) );
             //printf("dist albedo %f \n",dist_albedo);
             //printf("w albedo %f \n",w_albedo);
           }
 
+          //compute distance of normal pixels if are not empty
+          if(!albedo_image.empty())
+          {
+            auto &p = symmetrized_normal_image[{x1 + pad, x2 + pad}] ;
+            auto &q = symmetrized_normal_image[{y1 + pad, y2 + pad}] ;
+            auto dist_normal = pow(p.x - q.x,2) + pow(p.y - q.y,2) + pow(p.z - q.z,2);
+            w_normal = exp(-(dist_normal / (2 * pow(sigma,2) ) ) );
+            //printf("dist albedo %f \n",dist_albedo);
+            //printf("w albedo %f \n",w_albedo);
+          }
 
           //calculate weight of (x,y)
           auto &p = symmetrized_image[{x1 + pad, x2 + pad}] ;
           auto &q = symmetrized_image[{y1 + pad, y2 + pad}] ;
           auto dist = pow(p.x - q.x,2) + pow(p.y - q.y,2) + pow(p.z - q.z,2) ;//- (2 * (sigma * sigma)); 
-          auto w = (exp(-dist / (2 * pow(sigma,2))) * exp(-dist2 / ( pow(hf,2) * (2*pow(sigma,2)) ) )) * (!albedo_image.empty() ? w_albedo : 1); 
+          auto w = (exp(-dist / (2 * pow(sigma,2))) * exp(-dist2 / ( pow(hf,2) * (2*pow(sigma,2)) ) ))
+           * (!albedo_image.empty() ? w_albedo : 1)
+           * (!normal_image.empty() ? w_normal : 1); 
 
           //printf("w tot %f \n",w);
           //compute denoised pixel (x1,x2)
