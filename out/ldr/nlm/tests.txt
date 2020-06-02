@@ -1,0 +1,11 @@
+coffe --> -p 3 -s 10 -h 2.5 -a 50
+bistrointerior --> -p 3 -s 10 -h 2.5 -a 50
+bad kitchen fatta male1280_128 --> -p 3 -s 10 -h 2.5 -a 50
+prova con kitchen senza alb e nrm 1280_1024 --> -p 3 -s 13 -0.60 -a 20
+prova con kitchen fatta bene alb+nrm 1280_1024 --> -p 3 -s 13 -h 0.60 -a 20
+prova con bathroom fatta bene alb+nrm 1280_1024 rispetto a intel --> -p 3 -s 13 -h 0.60 -a 20
+prova con bedroom fatta bene alb+nrm 1280_1024 rispetto a intel --> -p 3 -s 13 -h 0.60 -a 20
+prova con classroom fatta bene alb+nrm 1280_1024 rispetto a intel --> -p 3 -s 13 -h 0.60 -a 20 
+prova bistrot exterior -> -p 3 -s 15 -h 5 -a 30
+prova sanmiguel --> -p 3 -s 15 -h 25 -a 50
+
