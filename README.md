@@ -76,14 +76,15 @@ For this scene I tried both 64 samples and 1024 samples.
     <img src="./tests/images/ldr/11_bathroom1/11_bathroom1_albedo_1280_64.jpg" width="250"/>
     <img src="./tests/images/ldr/11_bathroom1/11_bathroom1_normal_1280_64.jpg" width="250"/>
     <br>
-    <em> Bathroom input with albedo and normal images using 64 samples. </em>
+    <em> Bathroom albedo and normal input images using 64 samples. </em>
+    <br>
     <br>
     <img src="./tests/images/ldr/11_bathroom1/11_bathroom1_1280_64.jpg" alt="drawing" width="600"/>
     <br>
-    <em> Bathroom input with albedo and normal images using 64 samples. </em>
+    <em> Bathroom input image using 64 samples. </em>
 </p>
 <br>
-This time, the Intel denoiser achieves better result than the NLM denoiser. To generate better results with NLM denoiser is possible to hypertune the parameter values like filtering parameter, sigma and the dimensions of the two windows. But with scenes like this, with much light and noise, is not possible to achieve the Intel results. The following images shown the corresponding outputs.
+This time, the Intel denoiser achieves better result than the NLM denoiser. To generate better results with NLM denoiser is possible to hypertune the parameter values like filtering parameter, sigma and the dimensions of the two windows. I tried to increment the sigma value to 100, and to increase the two windows, with no improvements. The problem is that with scenes with much light and noise, is not possible to achieve the Intel results. The following images shown the corresponding outputs.
 <p align="center">
     <img src="./out/ldr/intel/11_bathroom1_1280_64.jpg" alt="drawing" width="600"/>
     <br>
