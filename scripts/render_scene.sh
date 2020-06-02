@@ -30,8 +30,9 @@ while getopts ":r:s:" opt; do
 
 done
 
+#"11_bathroom1" "13_bedroom" "15_classroom"
 ## declare an array of test names
-declare -a arr=( "21_bistroexterior" "22_landscape" "23_sanmiguel")
+declare -a arr=("22_landscape")
 
 ## now loop through the above array
 for name_image in "${arr[@]}"
@@ -40,6 +41,7 @@ do
     file_json=tests/scenes/${name_image}/*.json
     #RENDERING JPG
     echo $name_image
+  
     echo "render jpg"
 
     echo "pathrace "
@@ -48,16 +50,16 @@ do
     ./bin/yscenetrace ${file_json} -o tests/images/${ext_ldr_folder}/${name_image}/${name_image}_normal_${resolution}_${samples}${ext_jpg} -s 128 -r ${resolution} -t normal
     echo "albedo "
     ./bin/yscenetrace ${file_json} -o tests/images/${ext_ldr_folder}/${name_image}/${name_image}_albedo_${resolution}_${samples}${ext_jpg} -s 128 -r ${resolution} -t albedo
-
+  
     #RENDERING HDR
     echo "render hdr"
 
     echo "pathrace "
-    ./bin/yscenetrace ${file_json} -o tests/images/${ext_hdr_folder}/${name_image}/${name_image}_${resolution}_${samples}${ext_hdr} -s 128 -r ${resolution} 
+    ./bin/yscenetrace ${file_json} -o tests/images/${ext_hdr_folder}/${name_image}/${name_image}_${resolution}_${samples}${ext_hdr} -s ${samples} -r ${resolution} 
     echo "normal "
-    ./bin/yscenetrace ${file_json} -o tests/images/${ext_hdr_folder}/${name_image}/${name_image}_normal_${resolution}_${samples}${ext_hdr} -s 128 -r ${resolution} -t normal
+    ./bin/yscenetrace ${file_json} -o tests/images/${ext_hdr_folder}/${name_image}/${name_image}_normal_${resolution}_${samples}${ext_hdr} -s ${samples} -r ${resolution} -t normal
     echo "albedo "
-    ./bin/yscenetrace ${file_json} -o tests/images/${ext_hdr_folder}/${name_image}/${name_image}_albedo_${resolution}_${samples}${ext_hdr} -s 128 -r ${resolution} -t albedo
+    ./bin/yscenetrace ${file_json} -o tests/images/${ext_hdr_folder}/${name_image}/${name_image}_albedo_${resolution}_${samples}${ext_hdr} -s ${samples} -r ${resolution} -t albedo
 
 done
 
