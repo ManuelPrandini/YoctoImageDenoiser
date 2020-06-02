@@ -86,7 +86,7 @@ namespace yocto::extension {
  * -------------------------------------
  * */
 
-    oidn::DeviceRef create_device(int num_threads = -1, int set_affinity = -1, int verbose = -1)
+    oidn::DeviceRef create_device(int num_threads = -1, int set_affinity = -1)
     {
         // Create an Intel Open Image Denoise device
         auto device = oidn::newDevice();
@@ -101,8 +101,6 @@ namespace yocto::extension {
             device.set("num_threads", num_threads);
         if (set_affinity >= 0)
             device.set("set_affinity", bool(set_affinity));
-        if (verbose >= 0)
-            device.set("verbose", verbose);
 
         //commit all setting
         device.commit();
@@ -114,7 +112,7 @@ namespace yocto::extension {
     img::image<vec3f>& color_image, img::image<vec3f>& output_image,  
     img::image<vec3f>& albedo_image,
     img::image<vec3f>& normal_image, 
-    bool hdr = false, bool srgb = false, int max_memory_mb = -1, std::string filter_type = "RT")
+    bool hdr = false, bool srgb = false, std::string filter_type = "RT")
     { 
         auto filter = device.newFilter(filter_type.c_str());
 
@@ -138,9 +136,6 @@ namespace yocto::extension {
         if (srgb)
             filter.set("srgb", true);
 
-        if (max_memory_mb >= 0)
-            filter.set("max_memory_mb", max_memory_mb);
-
         filter.commit();
 
         return filter;
@@ -148,7 +143,7 @@ namespace yocto::extension {
 
     oidn::FilterRef set_filter_to_device(oidn::DeviceRef& device, int width, int height,
     img::image<vec3f>& color_image, img::image<vec3f>& output_image,  
-    bool hdr = false, bool srgb = false, int max_memory_mb = -1, std::string filter_type = "RT")
+    bool hdr = false, bool srgb = false, std::string filter_type = "RT")
     { 
         auto filter = device.newFilter(filter_type.c_str());
 
@@ -162,9 +157,6 @@ namespace yocto::extension {
         if (srgb)
             filter.set("srgb", true);
 
-        if (max_memory_mb >= 0)
-            filter.set("max_memory_mb", max_memory_mb);
-
         filter.commit();
 
         return filter;
@@ -173,7 +165,7 @@ namespace yocto::extension {
     oidn::FilterRef set_filter_to_device(oidn::DeviceRef& device, int width, int height,
     img::image<vec3f>& color_image, img::image<vec3f>& output_image,  
     img::image<vec3f>& albedo_image,
-    bool hdr = false, bool srgb = false, int max_memory_mb = -1, std::string filter_type = "RT")
+    bool hdr = false, bool srgb = false, std::string filter_type = "RT")
     { 
         auto filter = device.newFilter(filter_type.c_str());
 
@@ -190,8 +182,6 @@ namespace yocto::extension {
         if (srgb)
             filter.set("srgb", true);
 
-        if (max_memory_mb >= 0)
-            filter.set("max_memory_mb", max_memory_mb);
 
         filter.commit();
 

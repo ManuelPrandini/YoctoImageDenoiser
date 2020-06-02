@@ -205,20 +205,14 @@
 
 {
   "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal",
-  "command": "/usr/bin/c++   -I../../libs -I../../libs/yocto_gui/ext/glfw/include -I../../libs/oidn/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o apps/yimagedenoise/CMakeFiles/yimagedenoise.dir/yimagedenoise.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/yimagedenoise/yimagedenoise.cpp",
-  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/yimagedenoise/yimagedenoise.cpp"
+  "command": "/usr/bin/c++   -I../../libs -I../../libs/yocto_gui/ext/glfw/include -I../../libs/oidn/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o apps/yimage_intel_denoiser/CMakeFiles/yimage_intel_denoiser.dir/yimage_intel_denoiser.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/yimage_intel_denoiser/yimage_intel_denoiser.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/yimage_intel_denoiser/yimage_intel_denoiser.cpp"
 },
 
 {
   "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal",
-  "command": "/usr/bin/c++   -I../../libs -I../../libs/yocto_gui/ext/glfw/include -I../../libs/oidn/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o apps/prova/CMakeFiles/prova.dir/prova.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/prova/prova.cpp",
-  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/prova/prova.cpp"
-},
-
-{
-  "directory": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal",
-  "command": "/usr/bin/c++   -I../../libs -I../../libs/yocto_gui/ext/glfw/include -I../../libs/oidn/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o apps/prova_nlm/CMakeFiles/prova_nlm.dir/prova_nlm.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/prova_nlm/prova_nlm.cpp",
-  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/prova_nlm/prova_nlm.cpp"
+  "command": "/usr/bin/c++   -I../../libs -I../../libs/yocto_gui/ext/glfw/include -I../../libs/oidn/include  -O3 -DNDEBUG   -fpermissive -std=gnu++17 -o apps/yimage_nlm_denoiser/CMakeFiles/yimage_nlm_denoiser.dir/yimage_nlm_denoiser.cpp.o -c /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/yimage_nlm_denoiser/yimage_nlm_denoiser.cpp",
+  "file": "/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/yimage_nlm_denoiser/yimage_nlm_denoiser.cpp"
 },
 
 {

@@ -83,25 +83,25 @@ using math::zero3f;
 namespace yocto::extension {
 
     //create OpenImageDenoise device and return it.
-    oidn::DeviceRef create_device(int num_threads = -1, int set_affinity = -1, int verbose = -1);
+    oidn::DeviceRef create_device(int num_threads = -1, int set_affinity = -1);
 
     //set filter to device with also albedo image and normal image as input. Return the filter created.
     oidn::FilterRef set_filter_to_device(oidn::DeviceRef& device, int width, int height,
     img::image<vec3f>& color_image, img::image<vec3f>& output_image,  
     img::image<vec3f>& albedo_image,
     img::image<vec3f>& normal_image, 
-    bool hdr = false, bool srgb = false, int max_memory_mb = -1, std::string filter_type = "RT");
+    bool hdr = false, bool srgb = false, std::string filter_type = "RT");
 
     //set filter to device. Return the filter created.
     oidn::FilterRef set_filter_to_device(oidn::DeviceRef& device, int width, int height,
     img::image<vec3f>& color_image, img::image<vec3f>& output_image,  
-    bool hdr = false, bool srgb = false, int max_memory_mb = -1, std::string filter_type = "RT");
+    bool hdr = false, bool srgb = false, std::string filter_type = "RT");
 
     //set filter to device with also albedo image as input. Return the filter created.
     oidn::FilterRef set_filter_to_device(oidn::DeviceRef& device, int width, int height,
     img::image<vec3f>& color_image, img::image<vec3f>& output_image,  
     img::image<vec3f>& albedo_image,
-    bool hdr = false, bool srgb = false, int max_memory_mb = -1, std::string filter_type = "RT");
+    bool hdr = false, bool srgb = false, std::string filter_type = "RT");
 
 
     //execute filter

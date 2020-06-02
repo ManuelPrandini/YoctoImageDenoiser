@@ -718,57 +718,57 @@ build ../../bin/yscenetrace: CXX_EXECUTABLE_LINKER__yscenetrace apps/yscenetrace
 #############################################
 # Utility command for rebuild_cache
 
-build apps/yimagedenoise/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/yimagedenoise && /usr/bin/cmake -S/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser -B/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal
+build apps/yimage_intel_denoiser/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/yimage_intel_denoiser && /usr/bin/cmake -S/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser -B/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
 
-build apps/yimagedenoise/rebuild_cache: phony apps/yimagedenoise/CMakeFiles/rebuild_cache.util
+build apps/yimage_intel_denoiser/rebuild_cache: phony apps/yimage_intel_denoiser/CMakeFiles/rebuild_cache.util
 
 
 #############################################
 # Utility command for edit_cache
 
-build apps/yimagedenoise/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/yimagedenoise && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+build apps/yimage_intel_denoiser/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/yimage_intel_denoiser && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
-build apps/yimagedenoise/edit_cache: phony apps/yimagedenoise/CMakeFiles/edit_cache.util
+build apps/yimage_intel_denoiser/edit_cache: phony apps/yimage_intel_denoiser/CMakeFiles/edit_cache.util
 
 # =============================================================================
-# Object build statements for EXECUTABLE target yimagedenoise
+# Object build statements for EXECUTABLE target yimage_intel_denoiser
 
 
 #############################################
-# Order-only phony target for yimagedenoise
+# Order-only phony target for yimage_intel_denoiser
 
-build cmake_object_order_depends_target_yimagedenoise: phony || cmake_object_order_depends_target_glfw cmake_object_order_depends_target_yocto cmake_object_order_depends_target_yocto_extension cmake_object_order_depends_target_yocto_gui cmake_object_order_depends_target_yocto_pathtrace
+build cmake_object_order_depends_target_yimage_intel_denoiser: phony || cmake_object_order_depends_target_glfw cmake_object_order_depends_target_yocto cmake_object_order_depends_target_yocto_extension cmake_object_order_depends_target_yocto_gui cmake_object_order_depends_target_yocto_pathtrace
 
-build apps/yimagedenoise/CMakeFiles/yimagedenoise.dir/yimagedenoise.cpp.o: CXX_COMPILER__yimagedenoise ../../apps/yimagedenoise/yimagedenoise.cpp || cmake_object_order_depends_target_yimagedenoise
-  DEP_FILE = apps/yimagedenoise/CMakeFiles/yimagedenoise.dir/yimagedenoise.cpp.o.d
+build apps/yimage_intel_denoiser/CMakeFiles/yimage_intel_denoiser.dir/yimage_intel_denoiser.cpp.o: CXX_COMPILER__yimage_intel_denoiser ../../apps/yimage_intel_denoiser/yimage_intel_denoiser.cpp || cmake_object_order_depends_target_yimage_intel_denoiser
+  DEP_FILE = apps/yimage_intel_denoiser/CMakeFiles/yimage_intel_denoiser.dir/yimage_intel_denoiser.cpp.o.d
   FLAGS = -O3 -DNDEBUG   -fpermissive -std=gnu++17
   INCLUDES = -I../../libs -I../../libs/yocto_gui/ext/glfw/include -I../../libs/oidn/include
-  OBJECT_DIR = apps/yimagedenoise/CMakeFiles/yimagedenoise.dir
-  OBJECT_FILE_DIR = apps/yimagedenoise/CMakeFiles/yimagedenoise.dir
+  OBJECT_DIR = apps/yimage_intel_denoiser/CMakeFiles/yimage_intel_denoiser.dir
+  OBJECT_FILE_DIR = apps/yimage_intel_denoiser/CMakeFiles/yimage_intel_denoiser.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target yimagedenoise
+# Link build statements for EXECUTABLE target yimage_intel_denoiser
 
 
 #############################################
-# Link the executable ../../bin/yimagedenoise
+# Link the executable ../../bin/yimage_intel_denoiser
 
-build ../../bin/yimagedenoise: CXX_EXECUTABLE_LINKER__yimagedenoise apps/yimagedenoise/CMakeFiles/yimagedenoise.dir/yimagedenoise.cpp.o | ../../bin/libyocto.a ../../bin/libyocto_gui.a ../../bin/libyocto_pathtrace.a ../../bin/libyocto_extension.a ../../bin/libglfw3.a /usr/lib/x86_64-linux-gnu/librt.so /usr/lib/x86_64-linux-gnu/libm.so /usr/lib/x86_64-linux-gnu/libX11.so ../../bin/libyocto_pathtrace.a ../../bin/libyocto.a ../../libs/oidn/lib/libOpenImageDenoise.so /usr/lib/x86_64-linux-gnu/libOpenImageIO.so || ../../bin/libglfw3.a ../../bin/libyocto.a ../../bin/libyocto_extension.a ../../bin/libyocto_gui.a ../../bin/libyocto_pathtrace.a
+build ../../bin/yimage_intel_denoiser: CXX_EXECUTABLE_LINKER__yimage_intel_denoiser apps/yimage_intel_denoiser/CMakeFiles/yimage_intel_denoiser.dir/yimage_intel_denoiser.cpp.o | ../../bin/libyocto.a ../../bin/libyocto_gui.a ../../bin/libyocto_pathtrace.a ../../bin/libyocto_extension.a ../../bin/libglfw3.a /usr/lib/x86_64-linux-gnu/librt.so /usr/lib/x86_64-linux-gnu/libm.so /usr/lib/x86_64-linux-gnu/libX11.so ../../bin/libyocto_pathtrace.a ../../bin/libyocto.a ../../libs/oidn/lib/libOpenImageDenoise.so /usr/lib/x86_64-linux-gnu/libOpenImageIO.so || ../../bin/libglfw3.a ../../bin/libyocto.a ../../bin/libyocto_extension.a ../../bin/libyocto_gui.a ../../bin/libyocto_pathtrace.a
   FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = -Wl,-rpath,/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/oidn/lib  ../../bin/libyocto.a  ../../bin/libyocto_gui.a  ../../bin/libyocto_pathtrace.a  ../../bin/libyocto_extension.a  ../../bin/libglfw3.a  /usr/lib/x86_64-linux-gnu/librt.so  -lm  /usr/lib/x86_64-linux-gnu/libX11.so  -ldl  ../../bin/libyocto_pathtrace.a  ../../bin/libyocto.a  -lpthread  ../../libs/oidn/lib/libOpenImageDenoise.so  /usr/lib/x86_64-linux-gnu/libOpenImageIO.so
-  OBJECT_DIR = apps/yimagedenoise/CMakeFiles/yimagedenoise.dir
+  OBJECT_DIR = apps/yimage_intel_denoiser/CMakeFiles/yimage_intel_denoiser.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = ../../bin/yimagedenoise
-  TARGET_PDB = yimagedenoise.dbg
+  TARGET_FILE = ../../bin/yimage_intel_denoiser
+  TARGET_PDB = yimage_intel_denoiser.dbg
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
@@ -779,118 +779,57 @@ build ../../bin/yimagedenoise: CXX_EXECUTABLE_LINKER__yimagedenoise apps/yimaged
 #############################################
 # Utility command for rebuild_cache
 
-build apps/prova/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/prova && /usr/bin/cmake -S/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser -B/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal
+build apps/yimage_nlm_denoiser/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/yimage_nlm_denoiser && /usr/bin/cmake -S/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser -B/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
 
-build apps/prova/rebuild_cache: phony apps/prova/CMakeFiles/rebuild_cache.util
+build apps/yimage_nlm_denoiser/rebuild_cache: phony apps/yimage_nlm_denoiser/CMakeFiles/rebuild_cache.util
 
 
 #############################################
 # Utility command for edit_cache
 
-build apps/prova/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/prova && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+build apps/yimage_nlm_denoiser/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/yimage_nlm_denoiser && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
-build apps/prova/edit_cache: phony apps/prova/CMakeFiles/edit_cache.util
+build apps/yimage_nlm_denoiser/edit_cache: phony apps/yimage_nlm_denoiser/CMakeFiles/edit_cache.util
 
 # =============================================================================
-# Object build statements for EXECUTABLE target prova
+# Object build statements for EXECUTABLE target yimage_nlm_denoiser
 
 
 #############################################
-# Order-only phony target for prova
+# Order-only phony target for yimage_nlm_denoiser
 
-build cmake_object_order_depends_target_prova: phony || cmake_object_order_depends_target_glfw cmake_object_order_depends_target_yocto cmake_object_order_depends_target_yocto_extension cmake_object_order_depends_target_yocto_gui cmake_object_order_depends_target_yocto_pathtrace
+build cmake_object_order_depends_target_yimage_nlm_denoiser: phony || cmake_object_order_depends_target_glfw cmake_object_order_depends_target_yocto cmake_object_order_depends_target_yocto_extension cmake_object_order_depends_target_yocto_gui cmake_object_order_depends_target_yocto_pathtrace
 
-build apps/prova/CMakeFiles/prova.dir/prova.cpp.o: CXX_COMPILER__prova ../../apps/prova/prova.cpp || cmake_object_order_depends_target_prova
-  DEP_FILE = apps/prova/CMakeFiles/prova.dir/prova.cpp.o.d
+build apps/yimage_nlm_denoiser/CMakeFiles/yimage_nlm_denoiser.dir/yimage_nlm_denoiser.cpp.o: CXX_COMPILER__yimage_nlm_denoiser ../../apps/yimage_nlm_denoiser/yimage_nlm_denoiser.cpp || cmake_object_order_depends_target_yimage_nlm_denoiser
+  DEP_FILE = apps/yimage_nlm_denoiser/CMakeFiles/yimage_nlm_denoiser.dir/yimage_nlm_denoiser.cpp.o.d
   FLAGS = -O3 -DNDEBUG   -fpermissive -std=gnu++17
   INCLUDES = -I../../libs -I../../libs/yocto_gui/ext/glfw/include -I../../libs/oidn/include
-  OBJECT_DIR = apps/prova/CMakeFiles/prova.dir
-  OBJECT_FILE_DIR = apps/prova/CMakeFiles/prova.dir
+  OBJECT_DIR = apps/yimage_nlm_denoiser/CMakeFiles/yimage_nlm_denoiser.dir
+  OBJECT_FILE_DIR = apps/yimage_nlm_denoiser/CMakeFiles/yimage_nlm_denoiser.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target prova
+# Link build statements for EXECUTABLE target yimage_nlm_denoiser
 
 
 #############################################
-# Link the executable ../../bin/prova
+# Link the executable ../../bin/yimage_nlm_denoiser
 
-build ../../bin/prova: CXX_EXECUTABLE_LINKER__prova apps/prova/CMakeFiles/prova.dir/prova.cpp.o | ../../bin/libyocto.a ../../bin/libyocto_gui.a ../../bin/libyocto_pathtrace.a ../../bin/libyocto_extension.a ../../bin/libglfw3.a /usr/lib/x86_64-linux-gnu/librt.so /usr/lib/x86_64-linux-gnu/libm.so /usr/lib/x86_64-linux-gnu/libX11.so ../../bin/libyocto_pathtrace.a ../../bin/libyocto.a ../../libs/oidn/lib/libOpenImageDenoise.so /usr/lib/x86_64-linux-gnu/libOpenImageIO.so || ../../bin/libglfw3.a ../../bin/libyocto.a ../../bin/libyocto_extension.a ../../bin/libyocto_gui.a ../../bin/libyocto_pathtrace.a
+build ../../bin/yimage_nlm_denoiser: CXX_EXECUTABLE_LINKER__yimage_nlm_denoiser apps/yimage_nlm_denoiser/CMakeFiles/yimage_nlm_denoiser.dir/yimage_nlm_denoiser.cpp.o | ../../bin/libyocto.a ../../bin/libyocto_gui.a ../../bin/libyocto_pathtrace.a ../../bin/libyocto_extension.a ../../bin/libglfw3.a /usr/lib/x86_64-linux-gnu/librt.so /usr/lib/x86_64-linux-gnu/libm.so /usr/lib/x86_64-linux-gnu/libX11.so ../../bin/libyocto_pathtrace.a ../../bin/libyocto.a ../../libs/oidn/lib/libOpenImageDenoise.so /usr/lib/x86_64-linux-gnu/libOpenImageIO.so || ../../bin/libglfw3.a ../../bin/libyocto.a ../../bin/libyocto_extension.a ../../bin/libyocto_gui.a ../../bin/libyocto_pathtrace.a
   FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = -Wl,-rpath,/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/oidn/lib  ../../bin/libyocto.a  ../../bin/libyocto_gui.a  ../../bin/libyocto_pathtrace.a  ../../bin/libyocto_extension.a  ../../bin/libglfw3.a  /usr/lib/x86_64-linux-gnu/librt.so  -lm  /usr/lib/x86_64-linux-gnu/libX11.so  -ldl  ../../bin/libyocto_pathtrace.a  ../../bin/libyocto.a  -lpthread  ../../libs/oidn/lib/libOpenImageDenoise.so  /usr/lib/x86_64-linux-gnu/libOpenImageIO.so
-  OBJECT_DIR = apps/prova/CMakeFiles/prova.dir
+  OBJECT_DIR = apps/yimage_nlm_denoiser/CMakeFiles/yimage_nlm_denoiser.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_FILE = ../../bin/prova
-  TARGET_PDB = prova.dbg
-
-# =============================================================================
-# Write statements declared in CMakeLists.txt:
-# /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/apps/CMakeLists.txt
-# =============================================================================
-
-
-#############################################
-# Utility command for rebuild_cache
-
-build apps/prova_nlm/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/prova_nlm && /usr/bin/cmake -S/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser -B/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal
-  DESC = Running CMake to regenerate build system...
-  pool = console
-  restat = 1
-
-build apps/prova_nlm/rebuild_cache: phony apps/prova_nlm/CMakeFiles/rebuild_cache.util
-
-
-#############################################
-# Utility command for edit_cache
-
-build apps/prova_nlm/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/prova_nlm && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-  DESC = No interactive CMake dialog available...
-  restat = 1
-
-build apps/prova_nlm/edit_cache: phony apps/prova_nlm/CMakeFiles/edit_cache.util
-
-# =============================================================================
-# Object build statements for EXECUTABLE target prova_nlm
-
-
-#############################################
-# Order-only phony target for prova_nlm
-
-build cmake_object_order_depends_target_prova_nlm: phony || cmake_object_order_depends_target_glfw cmake_object_order_depends_target_yocto cmake_object_order_depends_target_yocto_extension cmake_object_order_depends_target_yocto_gui cmake_object_order_depends_target_yocto_pathtrace
-
-build apps/prova_nlm/CMakeFiles/prova_nlm.dir/prova_nlm.cpp.o: CXX_COMPILER__prova_nlm ../../apps/prova_nlm/prova_nlm.cpp || cmake_object_order_depends_target_prova_nlm
-  DEP_FILE = apps/prova_nlm/CMakeFiles/prova_nlm.dir/prova_nlm.cpp.o.d
-  FLAGS = -O3 -DNDEBUG   -fpermissive -std=gnu++17
-  INCLUDES = -I../../libs -I../../libs/yocto_gui/ext/glfw/include -I../../libs/oidn/include
-  OBJECT_DIR = apps/prova_nlm/CMakeFiles/prova_nlm.dir
-  OBJECT_FILE_DIR = apps/prova_nlm/CMakeFiles/prova_nlm.dir
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target prova_nlm
-
-
-#############################################
-# Link the executable ../../bin/prova_nlm
-
-build ../../bin/prova_nlm: CXX_EXECUTABLE_LINKER__prova_nlm apps/prova_nlm/CMakeFiles/prova_nlm.dir/prova_nlm.cpp.o | ../../bin/libyocto.a ../../bin/libyocto_gui.a ../../bin/libyocto_pathtrace.a ../../bin/libyocto_extension.a ../../bin/libglfw3.a /usr/lib/x86_64-linux-gnu/librt.so /usr/lib/x86_64-linux-gnu/libm.so /usr/lib/x86_64-linux-gnu/libX11.so ../../bin/libyocto_pathtrace.a ../../bin/libyocto.a ../../libs/oidn/lib/libOpenImageDenoise.so /usr/lib/x86_64-linux-gnu/libOpenImageIO.so || ../../bin/libglfw3.a ../../bin/libyocto.a ../../bin/libyocto_extension.a ../../bin/libyocto_gui.a ../../bin/libyocto_pathtrace.a
-  FLAGS = -O3 -DNDEBUG
-  LINK_LIBRARIES = -Wl,-rpath,/home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/libs/oidn/lib  ../../bin/libyocto.a  ../../bin/libyocto_gui.a  ../../bin/libyocto_pathtrace.a  ../../bin/libyocto_extension.a  ../../bin/libglfw3.a  /usr/lib/x86_64-linux-gnu/librt.so  -lm  /usr/lib/x86_64-linux-gnu/libX11.so  -ldl  ../../bin/libyocto_pathtrace.a  ../../bin/libyocto.a  -lpthread  ../../libs/oidn/lib/libOpenImageDenoise.so  /usr/lib/x86_64-linux-gnu/libOpenImageIO.so
-  OBJECT_DIR = apps/prova_nlm/CMakeFiles/prova_nlm.dir
-  POST_BUILD = :
-  PRE_LINK = :
-  TARGET_FILE = ../../bin/prova_nlm
-  TARGET_PDB = prova_nlm.dbg
+  TARGET_FILE = ../../bin/yimage_nlm_denoiser
+  TARGET_PDB = yimage_nlm_denoiser.dbg
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
@@ -968,11 +907,9 @@ build libyocto_gui.a: phony ../../bin/libyocto_gui.a
 
 build libyocto_pathtrace.a: phony ../../bin/libyocto_pathtrace.a
 
-build prova: phony ../../bin/prova
+build yimage_intel_denoiser: phony ../../bin/yimage_intel_denoiser
 
-build prova_nlm: phony ../../bin/prova_nlm
-
-build yimagedenoise: phony ../../bin/yimagedenoise
+build yimage_nlm_denoiser: phony ../../bin/yimage_nlm_denoiser
 
 build yocto: phony ../../bin/libyocto.a
 
@@ -1001,28 +938,21 @@ build all: phony libs/all apps/all
 #############################################
 # Folder: /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps
 
-build apps/all: phony apps/yscenetrace/all apps/yimagedenoise/all apps/prova/all apps/prova_nlm/all apps/ysceneitraces/all
+build apps/all: phony apps/yscenetrace/all apps/yimage_intel_denoiser/all apps/yimage_nlm_denoiser/all apps/ysceneitraces/all
 
 # =============================================================================
 
 #############################################
-# Folder: /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/prova
+# Folder: /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/yimage_intel_denoiser
 
-build apps/prova/all: phony ../../bin/prova
-
-# =============================================================================
-
-#############################################
-# Folder: /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/prova_nlm
-
-build apps/prova_nlm/all: phony ../../bin/prova_nlm
+build apps/yimage_intel_denoiser/all: phony ../../bin/yimage_intel_denoiser
 
 # =============================================================================
 
 #############################################
-# Folder: /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/yimagedenoise
+# Folder: /home/manuel/Data/Università/Magistrale/ComputerGraphics/homeworks/YoctoImageDenoiser/build/terminal/apps/yimage_nlm_denoiser
 
-build apps/yimagedenoise/all: phony ../../bin/yimagedenoise
+build apps/yimage_nlm_denoiser/all: phony ../../bin/yimage_nlm_denoiser
 
 # =============================================================================
 
@@ -1099,14 +1029,14 @@ default all
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../../CMakeLists.txt ../../apps/CMakeLists.txt ../../apps/prova/CMakeLists.txt ../../apps/prova_nlm/CMakeLists.txt ../../apps/yimagedenoise/CMakeLists.txt ../../apps/ysceneitraces/CMakeLists.txt ../../apps/yscenetrace/CMakeLists.txt ../../libs/CMakeLists.txt ../../libs/yocto/CMakeLists.txt ../../libs/yocto_extension/CMakeLists.txt ../../libs/yocto_gui/CMakeLists.txt ../../libs/yocto_gui/ext/glfw/CMakeLists.txt ../../libs/yocto_gui/ext/glfw/src/CMakeLists.txt ../../libs/yocto_gui/ext/glfw/src/glfw3.pc.in ../../libs/yocto_gui/ext/glfw/src/glfw3Config.cmake.in ../../libs/yocto_gui/ext/glfw/src/glfw_config.h.in ../../libs/yocto_pathtrace/CMakeLists.txt /usr/share/cmake-3.16/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /usr/share/cmake-3.16/Modules/CMakeCInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake /usr/share/cmake-3.16/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.16/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.16/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.16/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.16/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.16/Modules/CheckCSourceCompiles.cmake /usr/share/cmake-3.16/Modules/CheckFunctionExists.cmake /usr/share/cmake-3.16/Modules/CheckIncludeFile.cmake /usr/share/cmake-3.16/Modules/CheckLibraryExists.cmake /usr/share/cmake-3.16/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU.cmake /usr/share/cmake-3.16/Modules/FindFontconfig.cmake /usr/share/cmake-3.16/Modules/FindFreetype.cmake /usr/share/cmake-3.16/Modules/FindOpenGL.cmake /usr/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.16/Modules/FindPackageMessage.cmake /usr/share/cmake-3.16/Modules/FindPkgConfig.cmake /usr/share/cmake-3.16/Modules/FindThreads.cmake /usr/share/cmake-3.16/Modules/FindX11.cmake /usr/share/cmake-3.16/Modules/GNUInstallDirs.cmake /usr/share/cmake-3.16/Modules/Internal/CMakeCheckCompilerFlag.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.16/Modules/Platform/Linux.cmake /usr/share/cmake-3.16/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.16/Modules/SelectLibraryConfigurations.cmake /usr/share/cmake-3.16/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.16.3/CMakeCCompiler.cmake CMakeFiles/3.16.3/CMakeCXXCompiler.cmake CMakeFiles/3.16.3/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../../CMakeLists.txt ../../apps/CMakeLists.txt ../../apps/yimage_intel_denoiser/CMakeLists.txt ../../apps/yimage_nlm_denoiser/CMakeLists.txt ../../apps/ysceneitraces/CMakeLists.txt ../../apps/yscenetrace/CMakeLists.txt ../../libs/CMakeLists.txt ../../libs/yocto/CMakeLists.txt ../../libs/yocto_extension/CMakeLists.txt ../../libs/yocto_gui/CMakeLists.txt ../../libs/yocto_gui/ext/glfw/CMakeLists.txt ../../libs/yocto_gui/ext/glfw/src/CMakeLists.txt ../../libs/yocto_gui/ext/glfw/src/glfw3.pc.in ../../libs/yocto_gui/ext/glfw/src/glfw3Config.cmake.in ../../libs/yocto_gui/ext/glfw/src/glfw_config.h.in ../../libs/yocto_pathtrace/CMakeLists.txt /usr/share/cmake-3.16/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /usr/share/cmake-3.16/Modules/CMakeCInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake /usr/share/cmake-3.16/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.16/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.16/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.16/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.16/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.16/Modules/CheckCSourceCompiles.cmake /usr/share/cmake-3.16/Modules/CheckFunctionExists.cmake /usr/share/cmake-3.16/Modules/CheckIncludeFile.cmake /usr/share/cmake-3.16/Modules/CheckLibraryExists.cmake /usr/share/cmake-3.16/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU.cmake /usr/share/cmake-3.16/Modules/FindFontconfig.cmake /usr/share/cmake-3.16/Modules/FindFreetype.cmake /usr/share/cmake-3.16/Modules/FindOpenGL.cmake /usr/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.16/Modules/FindPackageMessage.cmake /usr/share/cmake-3.16/Modules/FindPkgConfig.cmake /usr/share/cmake-3.16/Modules/FindThreads.cmake /usr/share/cmake-3.16/Modules/FindX11.cmake /usr/share/cmake-3.16/Modules/GNUInstallDirs.cmake /usr/share/cmake-3.16/Modules/Internal/CMakeCheckCompilerFlag.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.16/Modules/Platform/Linux.cmake /usr/share/cmake-3.16/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.16/Modules/SelectLibraryConfigurations.cmake /usr/share/cmake-3.16/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.16.3/CMakeCCompiler.cmake CMakeFiles/3.16.3/CMakeCXXCompiler.cmake CMakeFiles/3.16.3/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../../CMakeLists.txt ../../apps/CMakeLists.txt ../../apps/prova/CMakeLists.txt ../../apps/prova_nlm/CMakeLists.txt ../../apps/yimagedenoise/CMakeLists.txt ../../apps/ysceneitraces/CMakeLists.txt ../../apps/yscenetrace/CMakeLists.txt ../../libs/CMakeLists.txt ../../libs/yocto/CMakeLists.txt ../../libs/yocto_extension/CMakeLists.txt ../../libs/yocto_gui/CMakeLists.txt ../../libs/yocto_gui/ext/glfw/CMakeLists.txt ../../libs/yocto_gui/ext/glfw/src/CMakeLists.txt ../../libs/yocto_gui/ext/glfw/src/glfw3.pc.in ../../libs/yocto_gui/ext/glfw/src/glfw3Config.cmake.in ../../libs/yocto_gui/ext/glfw/src/glfw_config.h.in ../../libs/yocto_pathtrace/CMakeLists.txt /usr/share/cmake-3.16/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /usr/share/cmake-3.16/Modules/CMakeCInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake /usr/share/cmake-3.16/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.16/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.16/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.16/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.16/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.16/Modules/CheckCSourceCompiles.cmake /usr/share/cmake-3.16/Modules/CheckFunctionExists.cmake /usr/share/cmake-3.16/Modules/CheckIncludeFile.cmake /usr/share/cmake-3.16/Modules/CheckLibraryExists.cmake /usr/share/cmake-3.16/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU.cmake /usr/share/cmake-3.16/Modules/FindFontconfig.cmake /usr/share/cmake-3.16/Modules/FindFreetype.cmake /usr/share/cmake-3.16/Modules/FindOpenGL.cmake /usr/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.16/Modules/FindPackageMessage.cmake /usr/share/cmake-3.16/Modules/FindPkgConfig.cmake /usr/share/cmake-3.16/Modules/FindThreads.cmake /usr/share/cmake-3.16/Modules/FindX11.cmake /usr/share/cmake-3.16/Modules/GNUInstallDirs.cmake /usr/share/cmake-3.16/Modules/Internal/CMakeCheckCompilerFlag.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.16/Modules/Platform/Linux.cmake /usr/share/cmake-3.16/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.16/Modules/SelectLibraryConfigurations.cmake /usr/share/cmake-3.16/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.16.3/CMakeCCompiler.cmake CMakeFiles/3.16.3/CMakeCXXCompiler.cmake CMakeFiles/3.16.3/CMakeSystem.cmake: phony
+build ../../CMakeLists.txt ../../apps/CMakeLists.txt ../../apps/yimage_intel_denoiser/CMakeLists.txt ../../apps/yimage_nlm_denoiser/CMakeLists.txt ../../apps/ysceneitraces/CMakeLists.txt ../../apps/yscenetrace/CMakeLists.txt ../../libs/CMakeLists.txt ../../libs/yocto/CMakeLists.txt ../../libs/yocto_extension/CMakeLists.txt ../../libs/yocto_gui/CMakeLists.txt ../../libs/yocto_gui/ext/glfw/CMakeLists.txt ../../libs/yocto_gui/ext/glfw/src/CMakeLists.txt ../../libs/yocto_gui/ext/glfw/src/glfw3.pc.in ../../libs/yocto_gui/ext/glfw/src/glfw3Config.cmake.in ../../libs/yocto_gui/ext/glfw/src/glfw_config.h.in ../../libs/yocto_pathtrace/CMakeLists.txt /usr/share/cmake-3.16/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /usr/share/cmake-3.16/Modules/CMakeCInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake /usr/share/cmake-3.16/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.16/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.16/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.16/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.16/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.16/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.16/Modules/CheckCSourceCompiles.cmake /usr/share/cmake-3.16/Modules/CheckFunctionExists.cmake /usr/share/cmake-3.16/Modules/CheckIncludeFile.cmake /usr/share/cmake-3.16/Modules/CheckLibraryExists.cmake /usr/share/cmake-3.16/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Compiler/GNU.cmake /usr/share/cmake-3.16/Modules/FindFontconfig.cmake /usr/share/cmake-3.16/Modules/FindFreetype.cmake /usr/share/cmake-3.16/Modules/FindOpenGL.cmake /usr/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.16/Modules/FindPackageMessage.cmake /usr/share/cmake-3.16/Modules/FindPkgConfig.cmake /usr/share/cmake-3.16/Modules/FindThreads.cmake /usr/share/cmake-3.16/Modules/FindX11.cmake /usr/share/cmake-3.16/Modules/GNUInstallDirs.cmake /usr/share/cmake-3.16/Modules/Internal/CMakeCheckCompilerFlag.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.16/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.16/Modules/Platform/Linux.cmake /usr/share/cmake-3.16/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.16/Modules/SelectLibraryConfigurations.cmake /usr/share/cmake-3.16/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.16.3/CMakeCCompiler.cmake CMakeFiles/3.16.3/CMakeCXXCompiler.cmake CMakeFiles/3.16.3/CMakeSystem.cmake: phony
 
 
 #############################################

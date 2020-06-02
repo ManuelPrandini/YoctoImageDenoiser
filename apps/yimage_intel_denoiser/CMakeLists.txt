@@ -1,0 +1,5 @@
+add_executable(yimage_intel_denoiser yimage_intel_denoiser.cpp)
+
+set_target_properties(yimage_intel_denoiser PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED YES)
+target_include_directories(yimage_intel_denoiser PUBLIC ${CMAKE_SOURCE_DIR}/libs)
+target_link_libraries(yimage_intel_denoiser yocto yocto_gui yocto_pathtrace yocto_extension)

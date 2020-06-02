@@ -184,7 +184,7 @@ struct trace_params {
 };
 
 const auto shader_names = std::vector<std::string>{
-    "naive", "path", "eyelight", "normal","color"};
+    "naive", "path", "eyelight", "normal","albedo"};
 
 // Progress report callback
 using progress_callback =
