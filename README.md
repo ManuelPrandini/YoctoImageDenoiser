@@ -1,3 +1,4 @@
+
 # YoctoImageDenoiser
 For the final project of Computer Graphics Master Computer Science course, I implemented two kind of denoiser used to eliminate the sample noise generated on the images by MonteCarlo path tracing:
 - An AI denoiser application exploiting Intel Open Image Denoiser;
@@ -146,4 +147,5 @@ Manuel Prandini
 ----
 
 MIT
+
 
