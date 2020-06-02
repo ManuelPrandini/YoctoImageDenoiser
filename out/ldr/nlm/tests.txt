@@ -8,4 +8,6 @@ prova con bedroom fatta bene alb+nrm 1280_1024 rispetto a intel --> -p 3 -s 13 -
 prova con classroom fatta bene alb+nrm 1280_1024 rispetto a intel --> -p 3 -s 13 -h 0.60 -a 20 
 prova bistrot exterior -> -p 3 -s 15 -h 5 -a 30
 prova sanmiguel --> -p 3 -s 15 -h 25 -a 50
+prova con bagno 1280 64 --> -p 4 -s 20 -h 30 -a 100
+prova con kitchen e classroom 720 res e 256 samples : -p 5 -s 15 -h 50 -a 150
 

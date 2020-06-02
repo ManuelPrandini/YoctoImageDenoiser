@@ -3,7 +3,7 @@ resolution=""
 samples=""
 
 ## declare an array of test names
-declare -a arr=("11_bathroom1" "13_bedroom" "15_classroom")
+declare -a arr=("15_classroom" "17_kitchen")
 
 while getopts ":r:s:" opt; do
   case ${opt} in

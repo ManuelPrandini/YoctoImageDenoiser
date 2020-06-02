@@ -32,7 +32,7 @@ done
 
 #"11_bathroom1" "13_bedroom" "15_classroom"
 ## declare an array of test names
-declare -a arr=("22_landscape")
+declare -a arr=("15_classroom" "17_kitchen")
 
 ## now loop through the above array
 for name_image in "${arr[@]}"
@@ -47,9 +47,9 @@ do
     echo "pathrace "
     ./bin/yscenetrace ${file_json} -o tests/images/${ext_ldr_folder}/${name_image}/${name_image}_${resolution}_${samples}${ext_jpg} -s ${samples} -r ${resolution} 
     echo "normal "
-    ./bin/yscenetrace ${file_json} -o tests/images/${ext_ldr_folder}/${name_image}/${name_image}_normal_${resolution}_${samples}${ext_jpg} -s 128 -r ${resolution} -t normal
+    ./bin/yscenetrace ${file_json} -o tests/images/${ext_ldr_folder}/${name_image}/${name_image}_normal_${resolution}_${samples}${ext_jpg} -s ${samples} -r ${resolution} -t normal
     echo "albedo "
-    ./bin/yscenetrace ${file_json} -o tests/images/${ext_ldr_folder}/${name_image}/${name_image}_albedo_${resolution}_${samples}${ext_jpg} -s 128 -r ${resolution} -t albedo
+    ./bin/yscenetrace ${file_json} -o tests/images/${ext_ldr_folder}/${name_image}/${name_image}_albedo_${resolution}_${samples}${ext_jpg} -s ${samples} -r ${resolution} -t albedo
   
     #RENDERING HDR
     echo "render hdr"
