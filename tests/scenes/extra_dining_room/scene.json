@@ -1,0 +1,458 @@
+{
+  "asset": {
+    "generator": "Yocto/GL - https://github.com/xelatihy/yocto-gl"
+  },
+  "cameras": {
+    "camera1": {
+      "aspect": 1.7777777910232544,
+      "focus": 10.0,
+      "frame": [
+        0.9999139904975891,
+        -0.0,
+        0.01308470033109188,
+        0.0008356259786523879,
+        0.9979590177536011,
+        -0.06385760009288788,
+        -0.01305800024420023,
+        0.06386300176382065,
+        0.9978730082511902,
+        -0.5873178243637085,
+        2.762300968170166,
+        9.714290618896484
+      ],
+      "lens": 0.031176913529634476
+    }
+  },
+  "environments": {
+    "environment1": {
+      "emission": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "emission_tex": "texture4",
+      "frame": [
+        -1.0,
+        0.0,
+        8.742279788975793e-08,
+        0.0,
+        1.0,
+        0.0,
+        -8.742279788975793e-08,
+        0.0,
+        -1.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "materials": {
+    "material1": {
+      "color": [
+        0.7931100130081177,
+        0.7931100130081177,
+        0.7931100130081177
+      ],
+      "displacement": 1.0,
+      "roughness": 0.3162277638912201,
+      "specular": 0.03999999910593033
+    },
+    "material10": {
+      "color": [
+        0.05000000074505806,
+        0.05000000074505806,
+        0.05000000074505806
+      ],
+      "displacement": 1.0,
+      "roughness": 0.4472135901451111,
+      "specular": 0.03999999910593033
+    },
+    "material11": {
+      "color": [
+        0.32503700256347656,
+        0.32503700256347656,
+        0.32503700256347656
+      ],
+      "displacement": 1.0
+    },
+    "material12": {
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "color_tex": "texture2",
+      "displacement": 1.0
+    },
+    "material13": {
+      "color": [
+        0.20000000298023224,
+        0.20000000298023224,
+        0.20000000298023224
+      ],
+      "displacement": 1.0
+    },
+    "material14": {
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "color_tex": "texture3",
+      "displacement": 1.0
+    },
+    "material15": {
+      "color": [
+        0.6846150159835815,
+        0.6846150159835815,
+        0.6846150159835815
+      ],
+      "displacement": 1.0,
+      "roughness": 0.3162277638912201,
+      "specular": 0.03999999910593033
+    },
+    "material16": {
+      "displacement": 1.0
+    },
+    "material17": {
+      "displacement": 1.0,
+      "emission": [
+        1316.4609375,
+        1316.4609375,
+        1316.4609375
+      ]
+    },
+    "material2": {
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "displacement": 1.0,
+      "roughness": 0.3162277638912201,
+      "specular": 0.03999999910593033
+    },
+    "material3": {
+      "displacement": 1.0
+    },
+    "material4": {
+      "color": [
+        0.009999999776482582,
+        0.009999999776482582,
+        0.009999999776482582
+      ],
+      "displacement": 1.0,
+      "roughness": 0.4472135901451111,
+      "specular": 0.03999999910593033
+    },
+    "material5": {
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "displacement": 1.0,
+      "roughness": 0.10000000149011612,
+      "specular": 0.03999999910593033
+    },
+    "material6": {
+      "color": [
+        0.9666627049446106,
+        0.8021901845932007,
+        0.32404929399490356
+      ],
+      "displacement": 1.0,
+      "roughness": 0.3162277638912201
+    },
+    "material7": {
+      "color": [
+        0.9280474185943604,
+        0.9178045988082886,
+        0.9189086556434631
+      ],
+      "displacement": 1.0,
+      "roughness": 0.3162277638912201
+    },
+    "material8": {
+      "color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "color_tex": "texture1",
+      "displacement": 1.0,
+      "roughness": 0.10000000149011612,
+      "specular": 0.03999999910593033
+    },
+    "material9": {
+      "color": [
+        0.6875475645065308,
+        0.6490657925605774,
+        0.6870107650756836
+      ],
+      "displacement": 1.0,
+      "roughness": 0.22360679507255554
+    }
+  },
+  "objects": {
+    "object1": {
+      "material": "material1",
+      "shape": "shape1"
+    },
+    "object10": {
+      "material": "material5",
+      "shape": "shape10"
+    },
+    "object11": {
+      "material": "material6",
+      "shape": "shape11"
+    },
+    "object12": {
+      "material": "material7",
+      "shape": "shape12"
+    },
+    "object13": {
+      "material": "material8",
+      "shape": "shape13"
+    },
+    "object14": {
+      "material": "material6",
+      "shape": "shape14"
+    },
+    "object15": {
+      "material": "material5",
+      "shape": "shape15"
+    },
+    "object16": {
+      "material": "material5",
+      "shape": "shape16"
+    },
+    "object17": {
+      "material": "material6",
+      "shape": "shape17"
+    },
+    "object18": {
+      "material": "material8",
+      "shape": "shape18"
+    },
+    "object19": {
+      "material": "material6",
+      "shape": "shape19"
+    },
+    "object2": {
+      "material": "material2",
+      "shape": "shape2"
+    },
+    "object20": {
+      "material": "material5",
+      "shape": "shape20"
+    },
+    "object21": {
+      "material": "material7",
+      "shape": "shape21"
+    },
+    "object22": {
+      "material": "material5",
+      "shape": "shape22"
+    },
+    "object23": {
+      "material": "material2",
+      "shape": "shape23"
+    },
+    "object24": {
+      "material": "material9",
+      "shape": "shape24"
+    },
+    "object25": {
+      "material": "material10",
+      "shape": "shape25"
+    },
+    "object26": {
+      "material": "material2",
+      "shape": "shape26"
+    },
+    "object27": {
+      "material": "material9",
+      "shape": "shape27"
+    },
+    "object28": {
+      "material": "material10",
+      "shape": "shape28"
+    },
+    "object29": {
+      "material": "material2",
+      "shape": "shape29"
+    },
+    "object3": {
+      "material": "material2",
+      "shape": "shape3"
+    },
+    "object30": {
+      "material": "material9",
+      "shape": "shape30"
+    },
+    "object31": {
+      "material": "material10",
+      "shape": "shape31"
+    },
+    "object32": {
+      "material": "material2",
+      "shape": "shape32"
+    },
+    "object33": {
+      "material": "material9",
+      "shape": "shape33"
+    },
+    "object34": {
+      "material": "material10",
+      "shape": "shape34"
+    },
+    "object35": {
+      "material": "material2",
+      "shape": "shape35"
+    },
+    "object36": {
+      "material": "material9",
+      "shape": "shape36"
+    },
+    "object37": {
+      "material": "material10",
+      "shape": "shape37"
+    },
+    "object38": {
+      "material": "material11",
+      "shape": "shape38"
+    },
+    "object39": {
+      "frame": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0510599613189697,
+        0.0,
+        0.0,
+        -0.45210200548171997
+      ],
+      "material": "material12",
+      "shape": "shape39"
+    },
+    "object4": {
+      "material": "material1",
+      "shape": "shape4"
+    },
+    "object40": {
+      "material": "material13",
+      "shape": "shape40"
+    },
+    "object41": {
+      "material": "material2",
+      "shape": "shape41"
+    },
+    "object42": {
+      "material": "material9",
+      "shape": "shape42"
+    },
+    "object43": {
+      "material": "material10",
+      "shape": "shape43"
+    },
+    "object44": {
+      "material": "material5",
+      "shape": "shape44"
+    },
+    "object45": {
+      "material": "material5",
+      "shape": "shape45"
+    },
+    "object46": {
+      "material": "material6",
+      "shape": "shape46"
+    },
+    "object47": {
+      "material": "material7",
+      "shape": "shape47"
+    },
+    "object48": {
+      "material": "material8",
+      "shape": "shape48"
+    },
+    "object49": {
+      "material": "material6",
+      "shape": "shape49"
+    },
+    "object5": {
+      "material": "material2",
+      "shape": "shape5"
+    },
+    "object50": {
+      "material": "material5",
+      "shape": "shape50"
+    },
+    "object51": {
+      "frame": [
+        -1.0,
+        0.0,
+        1.5099600148005266e-07,
+        0.0,
+        1.0,
+        0.0,
+        -1.5099600148005266e-07,
+        0.0,
+        -1.0,
+        -0.6213909983634949,
+        4.02308988571167,
+        -4.474820137023926
+      ],
+      "material": "material14",
+      "shape": "shape51"
+    },
+    "object52": {
+      "material": "material15",
+      "shape": "shape52"
+    },
+    "object53": {
+      "material": "material13",
+      "shape": "shape53"
+    },
+    "object54": {
+      "frame": [
+        -0.3763567805290222,
+        0.0,
+        0.9264748096466064,
+        -0.26762333512306213,
+        0.9573707580566406,
+        -0.10871515423059464,
+        -0.886979877948761,
+        -0.2888619601726532,
+        -0.36031296849250793,
+        88.69799041748047,
+        28.88619613647461,
+        36.03129577636719
+      ],
+      "material": "material17",
+      "shape": "shape54"
+    },
+    "object6": {
+      "material": "material2",
+      "shape": "shape6"
+    },
+    "object7": {
+      "material": "material3",
+      "shape": "shape7"
+    },
+    "object8": {
+      "material": "material4",
+      "shape": "shape8"
+    },
+    "object9": {
+      "material": "material4",
+      "shape": "shape9"
+    }
+  }
+}

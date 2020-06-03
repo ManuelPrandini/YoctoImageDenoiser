@@ -86,6 +86,7 @@ namespace yocto::extension {
  * -------------------------------------
  * */
 
+    //Function used to create an OIDN device used to filter the image
     oidn::DeviceRef create_device(int num_threads = -1, int set_affinity = -1)
     {
         // Create an Intel Open Image Denoise device
@@ -108,6 +109,8 @@ namespace yocto::extension {
         return device;
     }
 
+    //Function that takes a specific OIDN device commited and set to it some filters, based
+    //on the images passed in input.
     oidn::FilterRef set_filter_to_device(oidn::DeviceRef& device, int width, int height,
     img::image<vec3f>& color_image, img::image<vec3f>& output_image,  
     img::image<vec3f>& albedo_image,
@@ -188,6 +191,7 @@ namespace yocto::extension {
         return filter;
     }
 
+    //Function that takes a filter commited and executes it, starting the denoising phase.
     void denoise( oidn::FilterRef& filter)
     {
         filter.execute();
@@ -205,6 +209,7 @@ namespace yocto::extension {
  * -------------------------------------
  * */
 
+    //Function that add specific padding to an image passed in input
     img::image<vec3f> add_padding( const img::image<vec3f> &input_image,int pad)
     {
         auto new_width = input_image.size().x + (2 * pad);
@@ -220,6 +225,7 @@ namespace yocto::extension {
         return padded_image;
     }
 
+    //Function that get the mean pixel of an image.
     vec3f get_mean_pixel( const img::image<vec3f> & input_image)
     {
         auto sum = zero3f;
@@ -242,11 +248,17 @@ namespace yocto::extension {
             }
     }
 
+    //Function that return the variance value of a pixel calculating
+    //the squared difference of the pixel colors with the mean pixel.
     float get_variance(const vec3f &pixel_color,const vec3f &mean_pixel)
     {
         return pow(pixel_color.x - mean_pixel.x, 2) + pow(pixel_color.y - mean_pixel.y, 2) + pow(pixel_color.z - mean_pixel.z, 2);
     }
 
+
+    //Function that applies the non local means denoiser to an image passed in input.
+    //It's possible to pass also a vector of auxiliary images (normal, albedo ecc) to 
+    //calculate also their weights values.
     img::image<vec3f> non_local_means_denoiser(const img::image<vec3f> &symmetrized_image,
     const std::vector<img::image<vec3f>> &aux_images,
     int height, int width, int half_patch_window = 3, int half_search_window = 10,float hf = 25.0f, float sigma = 50.0f,

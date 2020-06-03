@@ -62,3 +62,8 @@
 6101	6245	1591017045702763100	../../bin/yimage_intel_denoiser	868ae6d0dd81d237
 7	4573	1591022378556011200	apps/yimage_nlm_denoiser/CMakeFiles/yimage_nlm_denoiser.dir/yimage_nlm_denoiser.cpp.o	1f4a979bab1e9b68
 4575	4747	1591022378729643100	../../bin/yimage_nlm_denoiser	b2515857a507c2b3
+8	4588	1591173590764551200	libs/yocto_extension/CMakeFiles/yocto_extension.dir/yocto_extension.cpp.o	23126941b4f2aa58
+4610	4688	1591173590865855100	../../bin/libyocto_extension.a	659ae867fbd94104
+4688	5300	1591173591475322400	../../bin/yimage_nlm_denoiser	b2515857a507c2b3
+9	5446	1591173591622730400	apps/yimage_intel_denoiser/CMakeFiles/yimage_intel_denoiser.dir/yimage_intel_denoiser.cpp.o	4a8d7f7e2b1b2d5e
+5446	5620	1591173591796220400	../../bin/yimage_intel_denoiser	868ae6d0dd81d237

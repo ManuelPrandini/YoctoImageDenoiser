@@ -39,18 +39,6 @@ int main(int argc, char* argv[])
   auto num_threads = -1;
   auto set_affinity = 1;
 
-
-  /*
-  std::cout << "Intel(R) Open Image Denoise - Example" << std::endl;
-  std::cout << "usage: yimagedenoise [-f/--filter RT|RTLightmap]" << std::endl
-            << "               [--ldr color.pfm] [--srgb] [--hdr color.pfm]" << std::endl
-            << "               [--alb albedo.pfm] [--nrm normal.pfm]" << std::endl
-            << "               [-o/--output output.pfm] [-r/--ref reference_output.pfm]" << std::endl
-            << "               [-w/--weights weights.tza]" << std::endl
-            << "               [--threads n] [--affinity 0|1] [--maxmem MB]" << std::endl
-            << "               [--bench ntimes] [-v/--verbose 0-3]" << std::endl;
-  
-  */
   try
   {
     // parse command line

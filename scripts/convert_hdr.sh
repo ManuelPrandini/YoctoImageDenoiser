@@ -1,3 +1,6 @@
+#script used to convert all the output image that are in HDR folder
+#directly in png format using yimageproc that applies tonemapping.
+
 #convert HDR INTEL to png
 for fullfile in out/hdr/intel/* ; do
     filename=$(basename -- "$fullfile")
